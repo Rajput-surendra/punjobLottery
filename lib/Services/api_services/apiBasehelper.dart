@@ -20,8 +20,6 @@ class ApiException implements Exception {
 
 class ApiBaseHelper {
 
-
-
   Future<dynamic> postAPICall(Uri url, Map param) async {
     var responseJson;
     log('${url}');
@@ -30,6 +28,27 @@ class ApiBaseHelper {
     try {
       final response =
       await post(url, body: param.isNotEmpty ? param : [], headers: headers)
+          .timeout(const Duration(seconds: timeOut));
+      log('${response.body}');
+      responseJson = _response(response);
+    } on SocketException catch (e) {
+      throw ApiException('No Internet connection');
+    } on TimeoutException {
+      throw ApiException('Something went wrong, Server not Responding');
+    } on Exception catch (e) {
+      throw ApiException('Something Went wrong with ${e.toString()}');
+    }
+    return responseJson;
+  }
+
+
+  Future<dynamic> postAPICall2(Uri url) async {
+    var responseJson;
+    log('${url}');
+
+    try {
+      final response =
+      await post(url, headers: headers)
           .timeout(const Duration(seconds: timeOut));
       log('${response.body}');
       responseJson = _response(response);

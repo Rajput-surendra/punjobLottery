@@ -23,3 +23,7 @@ const String addMoney = '/ADD_MONEY';
 const String inviteFriend = '/INVITE_FRIEND';
 const String invitation = '/INVITATION';
 const String faq = '/FAQ';
+const String video = '/VIDEO';
+const String contact = '/CONTACT';
+const String notice = '/NOTICE';
+const String enquiry = '/ENQUIRY';

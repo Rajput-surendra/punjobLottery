@@ -80,20 +80,49 @@ class LoginController extends AppBaseController {
   }
 
   Future<void> sendOtp({required String mobile}) async {
+    update();
     isLoading.value = true;
 
     var param = {
       'mobile': mobile,
+      'app_key':"#63Y@#)KLO57991(\$457D9(JE4dY3d2250f\$%#(mhgamesapp!xyz!punjablottery)8fm834(HKU8)5grefgr48mg1"
     };
     apiBaseHelper.postAPICall(sendOTPAPI, param).then((getData) {
-      print('_____param_____${sendOTPAPI}_____${param}____');
       bool status = getData['status'];
       String msg = getData['msg'];
-
+      int otp = getData['otp'];
       if (status) {
-        print('____status______${status}_________');
         Fluttertoast.showToast(msg: msg);
-        Get.toNamed(otpScreen, arguments: [mobile, getData['otp']]);
+
+        Get.toNamed(otpScreen, arguments: [mobile, otp]);
+        update();
+        isLoading.value = false;
+      } else {
+        Fluttertoast.showToast(msg: msg);
+      }
+      isLoading.value = false;
+    });
+  }
+
+  Future<void> resendSendOtp({required String mobile}) async {
+    update();
+    isLoading.value = true;
+
+    var param = {
+      'mobile': mobile,
+      'app_key':"#63Y@#)KLO57991(\$457D9(JE4dY3d2250f\$%#(mhgamesapp!xyz!punjablottery)8fm834(HKU8)5grefgr48mg1"
+    };
+    apiBaseHelper.postAPICall(sendOTPAPI, param).then((getData) {
+      bool status = getData['status'];
+      String msg = getData['msg'];
+      int otp = getData['otp'];
+      if (status) {
+        Fluttertoast.showToast(msg: msg);
+
+        Get.toNamed(otpScreen, arguments: [mobile, otp]);
+        update();
+        print('_____otp_____${otp}_________');
+        isLoading.value = false;
       } else {
         Fluttertoast.showToast(msg: msg);
       }

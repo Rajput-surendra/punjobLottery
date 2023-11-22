@@ -99,7 +99,10 @@ class _Otp extends State<OTPVerificationScreen> {
                     // ),
                     const SizedBox(height: 30,),
                     Text("Haven't received the verification code?",style: TextStyle(color: AppColors.whit,fontSize: 16),),
-                    const Text('Resend',style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold,color: AppColors.whit),),
+                    InkWell(onTap: (){
+                     // controller.sendOtp();
+                    },
+                        child: const Text('Resend',style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold,color: AppColors.whit),)),
                     const SizedBox(height: 70,),
                     Obx(() => Padding(padding: const EdgeInsets.only(left: 25, right: 25), child: controller.isLoading.value ? const Center(child: CircularProgressIndicator(),) : AppButton(onTap: (){
                       controller.verifyOTP() ;

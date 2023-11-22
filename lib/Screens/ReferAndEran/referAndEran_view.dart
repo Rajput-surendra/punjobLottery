@@ -36,10 +36,10 @@ class _ReferAndEranState extends State<ReferAndEran> {
     super.initState();
     getMobile();
   }
-  String? mobile;
+  String? mobile,userReferCode;
   getMobile() async {
      mobile =  await SharedPre.getStringValue('userMobile');
-     print('____mobile______${mobile}_________');
+     userReferCode = await SharedPre.getStringValue('userReferCode');
      setState(() {
 
      });
@@ -111,7 +111,7 @@ class _ReferAndEranState extends State<ReferAndEran> {
                       child:  Padding(
                         padding: EdgeInsets.all(8.0),
                         child: Text(
-                          "PL: ${mobile}",
+                          "${userReferCode}",
                           style: TextStyle(color: AppColors.fntClr),
                         ),
                       ),
@@ -143,7 +143,7 @@ class _ReferAndEranState extends State<ReferAndEran> {
                       // var str =
                       //     "$appName\nRefer Code:$""\n${getTranslated(context, 'APPFIND')}$androidLink$packageName\n\n${getTranslated(context, 'IOSLBL')}\n$iosLink$iosPackage";
                       // Share.share(mobile ?? "");
-                      share(mobile: mobile);
+                      share(referCode: userReferCode);
 
                     },
                     title: "Share",
@@ -166,11 +166,11 @@ class _ReferAndEranState extends State<ReferAndEran> {
   }
   GlobalKey keyList = GlobalKey() ;
   bool iconVisible = true;
-  Future<void> share({String? mobile}) async {
-    print('____mobile______${mobile}_________');
+  Future<void> share({String? referCode}) async {
+
     await FlutterShare.share(
         title: 'Refer and Eran',
-        text: '$mobile',
+        text: '$referCode',
         linkUrl: 'Refer and Eran',
         chooserTitle: 'Example Chooser Title'
     );

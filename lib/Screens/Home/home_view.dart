@@ -5,7 +5,14 @@ import 'package:booknplay/Widgets/commen_widgets.dart';
 import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+
+import '../../Models/HomeModel/get_slider_model.dart';
+import '../../Models/HomeModel/lottery_model.dart';
+import '../../Services/api_services/apiConstants.dart';
+import '../../Services/api_services/apiStrings.dart';
+import '../Winner/winner_view.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -16,18 +23,17 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int currentIndex = 1;
-  List<Widget> items = [
-    Image.asset('assets/images/slider1.png'),
-    Image.asset('assets/images/slider2.png'),
-    Image.asset('assets/images/slider1.png'),
-    Image.asset('assets/images/slider4.png'),
-    Image.asset('assets/images/slider1.png'),
-  ];
+ @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getSlider();
+    getLottery();
+  }
   final CarouselController carouselController = CarouselController();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-
       child: Scaffold(
         backgroundColor: AppColors.whit,
         appBar: AppBar(
@@ -52,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
 
-        body: SingleChildScrollView(
+        body:getSliderModel == null ?Center(child: CircularProgressIndicator()) :SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -68,22 +74,26 @@ class _HomeScreenState extends State<HomeScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   CarouselSlider(
-                      items: items
+                      items: getSliderModel?.sliderdata!
                           .map(
                             (item) => Stack(
                             alignment: Alignment.center,
                             children: [
-                              ClipRRect(
-                                  borderRadius: BorderRadius.circular(10),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(10),
                                     child: Container(
-                                      decoration: const BoxDecoration(
+                                      height: 200,
+                                      decoration: BoxDecoration(
                                           image: DecorationImage(
-                                              image: AssetImage('assets/images/slider2.png'),
+                                              image: NetworkImage(
+                                                "${item.sliderImage}",
+                                              ),
                                               fit: BoxFit.fill)),
-                                    ),
-                                  )),
+                                    )
+                                ),
+                              ),
                             ]),
                       )
                           .toList(),
@@ -95,9 +105,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           aspectRatio: 1.8,
                           viewportFraction: 1,
                           onPageChanged: (index, reason) {
-                            _currentPost = index ;
                             setState(() {
-
+                              _currentPost = index ;
                             });
 
                           })),
@@ -145,7 +154,7 @@ class _HomeScreenState extends State<HomeScreen> {
                            const SizedBox(height: 5,),
                            InkWell(
                              onTap: (){
-                               Get.toNamed(winnerScreen);
+                              // Get.toNamed(winnerScreen);
                              },
                              child: Container(
                                height: 90,
@@ -173,10 +182,10 @@ class _HomeScreenState extends State<HomeScreen> {
                      child: Column(
                        crossAxisAlignment: CrossAxisAlignment.start,
                        children: [
-                         const Padding(
+                          Padding(
                            padding: EdgeInsets.only(left: 8),
                            child: Text(
-                             "Matka Lotteries",
+                             "${lotteryModel?.data?.name.toString()}",
                              style: TextStyle(
                                  color: AppColors.fntClr,
                                  fontSize: 18,
@@ -186,23 +195,120 @@ class _HomeScreenState extends State<HomeScreen> {
                          Padding(
                            padding: const EdgeInsets.all(3.0),
                            child: Container(
-                             height: MediaQuery.of(context).size.height/2.4,
+                             height: MediaQuery.of(context).size.height/1.1,
                              child: ListView.builder(
+                               scrollDirection: Axis.vertical,
                                  shrinkWrap: true,
                                  physics: const NeverScrollableScrollPhysics(),
-                                 itemCount: 3,
-                                 itemBuilder: (BuildContext context, int index) {
+                                itemCount:lotteryModel?.data?.lotteries?.length ,
+                                 // itemCount:2,
+                                 itemBuilder: (context, index) {
                                    return InkWell(
                                      onTap: (){
+                                       if( lotteryModel?.data?.lotteries?[index].active == '0' ){
+                                         Fluttertoast.showToast(msg: "Booking not yet to be start");
+                                       }else{
+                                         Navigator.push(context, MaterialPageRoute(builder: (context)=>WinnerScreen(gId:lotteryModel?.data?.lotteries?[index].gameId )));
+                                       }
 
+                                       //Get.toNamed(winnerScreen,arguments:lotteryModel?.data?.lotteries?[index].gameId );
                                      },
-                                     child: Container(
-                                         height: 105,
-                                         width: 150,
-                                         child: Padding(
-                                           padding: const EdgeInsets.all(5.0),
-                                           child: Image.asset("assets/images/slider4.png",fit: BoxFit.fill,),
-                                         )),
+                                     child: Padding(
+                                       padding: const EdgeInsets.all(5.0),
+                                       child: Container(
+                                         height: 115,
+                                         decoration: const BoxDecoration(
+                                             image: DecorationImage(
+                                                 image: AssetImage("assets/images/lotteryback.png"), fit: BoxFit.fill)),
+                                         child:  Column(
+                                           children: [
+                                            Padding(
+                                              padding: const EdgeInsets.only(left: 5,right: 5),
+                                              child: Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                children: [
+                                                  Row(
+                                                  children: [
+
+                                                    Text("Price:",style: TextStyle(color: AppColors.whit,fontSize: 12),),
+                                                    SizedBox(width: 2,),
+                                                    Text("${lotteryModel?.data?.lotteries?[index].ticketPrice}",style: TextStyle(color: AppColors.whit,fontSize: 12),)
+                                                  ],
+                                                ),
+
+                                                  Row(
+                                                    children: [
+                                                      SizedBox(height: 25,),
+                                                      Text("Open:",style: TextStyle(color: AppColors.whit,fontSize: 12),),
+                                                      SizedBox(width: 2,),
+                                                      Text("${lotteryModel?.data?.lotteries?[index].openTime}",style: TextStyle(color: AppColors.whit,fontSize: 12),)
+                                                    ],
+                                                  ),
+                                                  Row(
+                                                    children: [
+                                                      SizedBox(height: 25,),
+                                                      Text("Close:",style: TextStyle(color: AppColors.whit,fontSize: 12),),
+                                                      SizedBox(width: 2,),
+                                                      Text("${lotteryModel?.data?.lotteries?[index].closeTime}",style: TextStyle(color: AppColors.whit,fontSize: 12),)
+                                                    ],
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                           Padding(
+                                             padding: const EdgeInsets.all(8.0),
+                                             child: Row(
+                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                               children: [
+                                                 Text("${lotteryModel?.data?.lotteries?[index].userCount}",style: TextStyle(color: AppColors.whit,fontSize: 12),),
+                                                 lotteryModel?.data?.lotteries?[index].active == '0' ? SizedBox.shrink():  Text("Betting is Running Now",style: TextStyle(color: AppColors.whit,fontSize: 12),),
+                                                    Container(
+                                                      height: 45,width: 50,
+                                                      child: ClipRRect(
+                                                       borderRadius: BorderRadius.circular(10),
+                                                      child: Image.network("${lotteryModel?.data?.lotteries?[index].image}",fit: BoxFit.fill,)),
+                                                    ),
+                                               ],
+                                             ),
+                                           ),
+
+                                             Padding(
+                                               padding: const EdgeInsets.only(left: 5,right: 5),
+                                               child: Row(
+                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                 children: [
+                                                   Row(
+                                                     children: [
+                                                       SizedBox(height: 25,),
+                                                       Text("Start:",style: TextStyle(color: AppColors.whit,fontSize: 12),),
+                                                       SizedBox(width: 2,),
+                                                       Text("${lotteryModel?.data?.lotteries?[index].date}",style: TextStyle(color: AppColors.whit,fontSize: 12),)
+                                                     ],
+                                                   ),
+                                                   Row(
+                                                     children: [
+                                                       SizedBox(height: 25,),
+                                                       Text("End:",style: TextStyle(color: AppColors.whit,fontSize: 12),),
+                                                       SizedBox(width: 2,),
+                                                       Text("${lotteryModel?.data?.lotteries?[index].endDate}",style: TextStyle(color: AppColors.whit,fontSize: 12),)
+                                                     ],
+                                                   ),
+                                                   Row(
+                                                     children: [
+
+                                                       Text("Result:",style: TextStyle(color: AppColors.whit,fontSize: 12),),
+                                                       SizedBox(width: 2,),
+                                                       Text("${lotteryModel?.data?.lotteries?[index].resultDate}",style: TextStyle(color: AppColors.whit,fontSize: 12),)
+                                                     ],
+                                                   ),
+                                                 ],
+                                               ),
+                                             ),
+                                              
+                                           ],
+                                         )
+                                       ),
+                                     ),
                                    );
                                  }
                              ),
@@ -251,9 +357,9 @@ class _HomeScreenState extends State<HomeScreen> {
   int _currentPost = 0;
    _buildDots() {
     List<Widget> dots = [];
-    if (items == null) {
+    if (getSliderModel == null) {
     } else {
-      for (int i = 0; i < items.length; i++) {
+      for (int i = 0; i < getSliderModel!.sliderdata!.length; i++) {
         dots.add(
           Container(
             margin: EdgeInsets.all(1.5),
@@ -268,5 +374,35 @@ class _HomeScreenState extends State<HomeScreen> {
       }
     }
     return dots;
+  }
+
+  GetSliderModel? getSliderModel;
+  Future<void> getSlider() async {
+    // isLoading.value = true;
+    var param = {
+      'app_key':""
+    };
+    apiBaseHelper.postAPICall(getSliderAPI, param).then((getData) {
+      bool status = getData['status'];
+      String msg = getData['msg'];
+      if (status == true) {
+        getSliderModel = GetSliderModel.fromJson(getData);
+      } else {
+        Fluttertoast.showToast(msg: msg);
+      }
+      //isLoading.value = false;
+    });
+  }
+
+
+  LotteryModel? lotteryModel;
+  Future<void> getLottery() async {
+    apiBaseHelper.postAPICall2(getLotteryAPI).then((getData) {
+      setState(() {
+        lotteryModel = LotteryModel.fromJson(getData);
+      });
+
+      //isLoading.value = false;
+    });
   }
 }

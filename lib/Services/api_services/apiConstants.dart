@@ -1,6 +1,8 @@
 
 //Your application name
 
+import 'package:booknplay/Services/api_services/apiBasehelper.dart';
+
 const String appName = 'Book N Play';
 
 //Your package name
@@ -51,6 +53,7 @@ const String bankDetail =
 //Api class instance
 
 // for demo panels
+ApiBaseHelper apiBaseHelper = ApiBaseHelper();
 const String baseUrl = 'https://developmentalphawizz.com/lottery/';
 const String imageUrl = 'https://developmentalphawizz.com/';
 

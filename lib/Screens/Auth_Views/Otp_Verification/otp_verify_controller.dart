@@ -25,7 +25,7 @@ RxBool isLoading = false.obs ;
   String otp = '' ;
 
 
-  Future<void>    verifyOTP() async {
+  Future<void> verifyOTP() async {
     isLoading.value = true ;
 
     var param = {
@@ -40,11 +40,11 @@ RxBool isLoading = false.obs ;
 
         SharedPre.setValue('userData', getData['user_name']);
         SharedPre.setValue('userMobile', getData['mobile']);
+        SharedPre.setValue('userReferCode', getData['referral_code']);
         SharedPre.setValue('userId', getData['user_id'].toString());
+
         Fluttertoast.showToast(msg: msg);
         Get.toNamed(bottomBar);
-
-
 
       } else {
 

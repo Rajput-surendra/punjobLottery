@@ -18,7 +18,7 @@ class ScreenBindings implements Bindings {
      Get.lazyPut(() => OTPVerifyController() );
      Get.lazyPut(() => SignupController() );
      Get.lazyPut(() => DashboardController() );
-     Get.lazyPut(() => HomeController());
+     // Get.lazyPut(() => HomeController());
     // Get.lazyPut(() => const LoginScreen() );
     // Get.lazyPut(() =>  SignupScreen() );
     // Get.lazyPut(() =>  const BottomBar() );

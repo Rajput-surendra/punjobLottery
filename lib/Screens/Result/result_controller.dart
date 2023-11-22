@@ -52,23 +52,16 @@ Future getImageFromGallery() async {
 }
 
 Future <void> getProfile () async{
-
   isLoading.value = true;
-
   var param = {
     'user_id': usedata.id.toString(),
   };
   apiBaseHelper.postAPICall(getProfileApi, param).then((getData) {
     bool error = getData['status'];
     String msg = getData['message'];
-
     if (error) {
     //  Fluttertoast.showToast(msg: msg);
-
-
-
       name = getData['data']['first_name'];
-
       phoneC.text = getData['data']['mobile'];
       emailC.text = getData['data']['email'];
       addressC.text = usedata.address ?? '';

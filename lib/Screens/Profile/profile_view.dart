@@ -12,6 +12,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 import '../../Local_Storage/shared_pre.dart';
+import '../FaQ/faq_view.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key, this.isFrom}) : super(key: key);
@@ -311,39 +312,10 @@ class ProfileScreen extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: 10,),
-                      InkWell(
-                        onTap: (){
-                          Get.toNamed(inviteFriend);
 
-                        },
-                        child: Container(
-                          height: 50,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(7),
-                              border: Border.all(color: AppColors.fntClr)
-                          ),
-                          child:  Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
-                                  children: [
-                                    Image.asset("assets/images/Game Rates.png",height: 20,color: AppColors.profileColor,),
-                                    SizedBox(width: 10,),
-                                    Text("Game Rates",style: TextStyle(color: AppColors.fntClr,fontWeight: FontWeight.bold),),
-                                  ],
-                                ),
-                                Icon(Icons.arrow_forward_ios_outlined,color: AppColors.greyColor,size: 17,)
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 10,),
                       InkWell(
                         onTap: (){
-                          Get.toNamed(inviteFriend);
+                          Get.toNamed(notice);
 
                         },
                         child: Container(
@@ -373,7 +345,7 @@ class ProfileScreen extends StatelessWidget {
                       SizedBox(height: 10,),
                       InkWell(
                         onTap: (){
-                          Get.toNamed(inviteFriend);
+                          Get.toNamed(video);
 
                         },
                         child: Container(
@@ -403,8 +375,7 @@ class ProfileScreen extends StatelessWidget {
                       SizedBox(height: 10,),
                       InkWell(
                         onTap: (){
-                          Get.toNamed(inviteFriend);
-
+                          Get.toNamed(contact);
                         },
                         child: Container(
                           height: 50,
@@ -433,8 +404,7 @@ class ProfileScreen extends StatelessWidget {
                       SizedBox(height: 10,),
                       InkWell(
                         onTap: (){
-                          Get.toNamed(inviteFriend);
-
+                          Get.toNamed(enquiry);
                         },
                         child: Container(
                           height: 50,
@@ -553,8 +523,7 @@ class ProfileScreen extends StatelessWidget {
                       SizedBox(height: 10,),
                       InkWell(
                         onTap: (){
-                          Get.toNamed(termConditionScreen);
-
+                          Get.toNamed(faq);
                         },
                         child: Container(
                           height: 50,

@@ -59,7 +59,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   Obx(
                         () =>  Padding(
                       padding: const EdgeInsets.only(left: 40, right: 40),
-                      child: controller.isLoading.value ? const Center(child: CircularProgressIndicator(),) : AppButton(title:  'Send OTP' ,onTap: (){
+                      child: controller.isLoading.value == true ? const Center(child: CircularProgressIndicator(),) : AppButton(title:  'Send OTP' ,onTap: (){
                         controller.sendOtp(mobile: _mobile.text);
                       }),
                     ),

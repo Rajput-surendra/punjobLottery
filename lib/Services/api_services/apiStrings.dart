@@ -3,6 +3,17 @@ import 'apiConstants.dart';
 final Uri getUserRegister = Uri.parse('${baseUrl}Apicontroller/signUp');
 final Uri verifyOTPAPI = Uri.parse('${baseUrl}Apicontroller/otpVerify');
 final Uri sendOTPAPI= Uri.parse('${baseUrl}Apicontroller/otpLogin');
+final Uri getSliderAPI = Uri.parse('${baseUrl}api-get-slider-images');
+final Uri getPrivacyAPI = Uri.parse('${baseUrl}Apicontroller/apiGetContent');
+final Uri getContactAPI = Uri.parse('${baseUrl}Apicontroller/apiGetContactDetails');
+final Uri getNoticeAPI = Uri.parse('${baseUrl}Apicontroller/apiGetNotices');
+final Uri getFagsAPI = Uri.parse('${baseUrl}Apicontroller/getFaqs');
+final Uri getVideoAPI = Uri.parse('${baseUrl}Apicontroller/apiHowToPlay');
+final Uri addEnquiryAPI = Uri.parse('${baseUrl}Apicontroller/apiSubmitContactUs');
+final Uri getLotteryAPI = Uri.parse('${baseUrl}Apicontroller/getLotteries');
+final Uri getLotteryDetailsAPI = Uri.parse('${baseUrl}Apicontroller/getLotteries');
+final Uri getInviteeAPI = Uri.parse('${baseUrl}Apicontroller/apiGetInvitees');
+
 
 
 final Uri getCountry = Uri.parse('${baseUrl}get_countries');
