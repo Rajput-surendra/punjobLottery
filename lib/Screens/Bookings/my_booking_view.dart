@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:booknplay/Screens/Bookings/my_booking_controller.dart';
 import 'package:booknplay/Services/api_services/apiStrings.dart';
 import 'package:booknplay/Utils/Colors.dart';
@@ -10,6 +12,7 @@ import 'package:get/get.dart';
 import '../../Local_Storage/shared_pre.dart';
 import '../../Models/HomeModel/my_lottery_model.dart';
 import '../../Services/api_services/apiConstants.dart';
+import 'package:http/http.dart'as http;
 
 class MyBookingsScreen extends StatefulWidget {
   const MyBookingsScreen({Key? key, this.isFrom}) : super(key: key);
@@ -29,7 +32,7 @@ class _MyBookingsScreenState extends State<MyBookingsScreen> {
   String? userId;
   getUser() async {
     userId = await SharedPre.getStringValue('userId');
-    getLottery();
+    get();
   }
   @override
   Widget build(BuildContext context) {
@@ -61,7 +64,7 @@ class _MyBookingsScreenState extends State<MyBookingsScreen> {
           child:RefreshIndicator(
             onRefresh: (){
               return Future.delayed(Duration(seconds: 2), () {
-                getLottery();
+                get();
               });
 
             },
@@ -83,7 +86,7 @@ class _MyBookingsScreenState extends State<MyBookingsScreen> {
                             padding: const EdgeInsets.all(3.0),
                             child: Container(
                               //height: MediaQuery.of(context).size.height/1.1,
-                              child:myLotteryModel == null ? Center(child: CircularProgressIndicator()): ListView.builder(
+                              child:myLotteryModel == null ? Center(child: Text(" No Lottery Found!!")): ListView.builder(
                                   scrollDirection: Axis.vertical,
                                   shrinkWrap: true,
                                   physics: const NeverScrollableScrollPhysics(),
@@ -175,20 +178,77 @@ class _MyBookingsScreenState extends State<MyBookingsScreen> {
   }
 
   MyLotteryModel? myLotteryModel;
-  Future<void> getLottery() async {
-    // isLoading.value = true;
-    var param = {
-      'user_id':userId
+  // Future<void> getLottery() async {
+  //   // isLoading.value = true;
+  //   var param = {
+  //     'user_id':userId
+  //   };
+  //   apiBaseHelper.postAPICall(getLotteryAPI, param).then((getData) {
+  //     String msg = getData['msg'];
+  //     myLotteryModel = MyLotteryModel.fromJson(getData);
+  //     setState(() {
+  //
+  //     });
+  //     Fluttertoast.showToast(msg: msg);
+  //
+  //     //isLoading.value = false;
+  //   });
+  // }
+
+
+
+  getLottery() async {
+    var headers = {
+      'Content-Type': 'application/json',
+      'Cookie': 'ci_session=cefaa9477065503c4ca2ed67af58f3c87c6bfab4'
     };
-    apiBaseHelper.postAPICall(getLotteryAPI, param).then((getData) {
-      String msg = getData['msg'];
-      myLotteryModel = MyLotteryModel.fromJson(getData);
-      setState(() {
-
-      });
-      Fluttertoast.showToast(msg: msg);
-
-      //isLoading.value = false;
+    var request = http.Request('POST', Uri.parse('$baseUrl1/Apicontroller/getLotteries'));
+    request.body = json.encode({
+      // "referred_by":userReferCode
+      'user_id':userId
     });
+    request.headers.addAll(headers);
+    http.StreamedResponse response = await request.send();
+    if (response.statusCode == 200) {
+      var result = await response.stream.bytesToString();
+      var finalResult = MyLotteryModel.fromJson(json.decode(result));
+      setState(() {
+        myLotteryModel = finalResult;
+      });
+      Fluttertoast.showToast(msg: "${finalResult.msg}");
+
+    }
+    else {
+      print(response.reasonPhrase);
+    }
+
+  }
+
+
+  get() async {
+    var headers = {
+      'Content-Type': 'application/json',
+      'Cookie': 'ci_session=4b8b6274f26a280877c08cfedab1d6e9b46e4d2d'
+    };
+    var request = http.Request('POST', Uri.parse('https://developmentalphawizz.com/lottery/Apicontroller/getLotteries'));
+    request.body = json.encode({
+      "user_id":userId
+    });
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+     var result = await response.stream.bytesToString();
+     var finalResult = MyLotteryModel.fromJson(jsonDecode(result));
+     setState(() {
+       myLotteryModel = finalResult;
+     });
+     Fluttertoast.showToast(msg: "${finalResult.msg}");
+    }
+    else {
+    print(response.reasonPhrase);
+    }
+
   }
 }

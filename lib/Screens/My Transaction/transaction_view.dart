@@ -54,7 +54,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
               ),
             ),
           ),
-          body: SingleChildScrollView(
+          body:getTransactionModel == null ? Center(child: CircularProgressIndicator()): getTransactionModel!.withdrawdata!.length == 0 ? Center(child: Text("Withdraw Trasaction Data Not Available")): SingleChildScrollView(
             child: Container(
               height: MediaQuery.of(context).size.height/1.1,
               child: ListView.builder(
@@ -66,11 +66,18 @@ class _TransactionScreenState extends State<TransactionScreen> {
                         elevation: 1,
                         child: Padding(
                           padding: EdgeInsets.all(8.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text("${getTransactionModel!.withdrawdata![i].acHolderName}"),
-                            ],
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text("${getTransactionModel!.withdrawdata![i].acHolderName}"),
+                                SizedBox(height: 5,),
+                                Text("₹ ${getTransactionModel!.withdrawdata![i].requestAmount}"),
+                                SizedBox(height: 5,),
+                                Text("${getTransactionModel!.withdrawdata![i].requestNumber}"),
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -86,6 +93,33 @@ class _TransactionScreenState extends State<TransactionScreen> {
 
    String ?userId;
   GetTransactionModel? getTransactionModel;
+
+
+  get() async {
+    var headers = {
+      'Content-Type': 'application/json',
+      'Cookie': 'ci_session=329e84d8baf5bbe6fc18f412bda3e26574156d56'
+    };
+    var request = http.Request('POST', Uri.parse('$baseUrl1/Apicontroller/apiUserWithdrawTransactionHistory'));
+    request.body = json.encode({
+      "user_id":userId
+    });
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      var result  = await response.stream.bytesToString();
+      var finalResult = GetTransactionModel.fromJson(json.decode(result));
+       setState(() {
+         getTransactionModel =  finalResult;
+       });
+    }
+    else {
+    print(response.reasonPhrase);
+    }
+
+  }
   getTransactionApi() async {
     var headers = {
       'Content-Type': 'application/json',
@@ -114,7 +148,8 @@ class _TransactionScreenState extends State<TransactionScreen> {
  // String? userId;
   getUser() async {
     userId = await SharedPre.getStringValue('userId');
-    getTransactionApi();
+    // getTransactionApi();
+    get();
   }
 
   // Future<void> getTransactionApi() async {

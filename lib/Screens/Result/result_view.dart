@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:booknplay/Constants.dart';
 import 'package:booknplay/Screens/Profile/profile_controller.dart';
 import 'package:booknplay/Screens/Result/result_detaits_view.dart';
@@ -16,6 +18,7 @@ import '../../Local_Storage/shared_pre.dart';
 import '../../Models/HomeModel/get_result_model.dart';
 import '../../Services/api_services/apiConstants.dart';
 import '../../Services/api_services/apiStrings.dart';
+import 'package:http/http.dart'as http;
 
 class ResultScreen extends StatefulWidget {
   const ResultScreen({Key? key, this.isFrom}) : super(key: key);
@@ -63,7 +66,7 @@ class _ResultScreenState extends State<ResultScreen> {
               child:RefreshIndicator(
                 onRefresh: (){
                   return Future.delayed(Duration(seconds: 2), () {
-                    // getLottery();
+                    getResultDetails();
                   });
 
                 },
@@ -187,20 +190,51 @@ class _ResultScreenState extends State<ResultScreen> {
     getResultDetails();
   }
   GetResultModel? getResultModel;
-  Future<void> getResultDetails() async {
-    // isLoading.value = true;
-    var param = {
-      'user_id':userId
-    };
-    apiBaseHelper.postAPICall(getResultAPI, param).then((getData) {
-      String msg = getData['msg'];
-      getResultModel = GetResultModel.fromJson(getData);
-      setState(() {
+  // Future<void> getResultDetails() async {
+  //   // isLoading.value = true;
+  //   var param = {
+  //     'user_id':userId
+  //   };
+  //   apiBaseHelper.postAPICall(getResultAPI, param).then((getData) {
+  //     String msg = getData['msg'];
+  //     getResultModel = GetResultModel.fromJson(getData);
+  //     setState(() {
+  //
+  //     });
+  //     Fluttertoast.showToast(msg: msg);
+  //     //isLoading.value = false;
+  //   });
+  // }
 
-      });
-      Fluttertoast.showToast(msg: msg);
-      //isLoading.value = false;
+
+
+
+  getResultDetails() async {
+    var headers = {
+      'Content-Type': 'application/json',
+      'Cookie': 'ci_session=4b8b6274f26a280877c08cfedab1d6e9b46e4d2d'
+    };
+    var request = http.Request('POST', Uri.parse('https://developmentalphawizz.com/lottery/Apicontroller/getResults'));
+    request.body = json.encode({
+      "user_id":userId
     });
+    print('____request.body______${request.body}_________');
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      var result = await response.stream.bytesToString();
+      var finalResult = GetResultModel.fromJson(jsonDecode(result));
+      setState(() {
+        getResultModel = finalResult;
+      });
+      Fluttertoast.showToast(msg: "${finalResult.msg}");
+    }
+    else {
+      print(response.reasonPhrase);
+    }
+
   }
 
 }

@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:booknplay/Services/api_services/apiConstants.dart';
 import 'package:booknplay/Utils/Colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +34,7 @@ class _WithdrawalScreenState extends State<WithdrawalScreen> {
     userBalance = await SharedPre.getStringValue('balanceUser');
     userId = await SharedPre.getStringValue('userId');
     setState(() {
-      getTransactionApi();
+    //  getTransactionApi();
     });
   }
   String selectedOption = "UPI";
@@ -99,6 +100,7 @@ class _WithdrawalScreenState extends State<WithdrawalScreen> {
                   _currentIndex = 1;
                   // getNewListApi(1);
 
+
                 });
               },
               child: Container(
@@ -121,6 +123,7 @@ class _WithdrawalScreenState extends State<WithdrawalScreen> {
               onTap: (){
                 setState(() {
                   _currentIndex = 2;
+                  getTransactionApi();
                   // getNewListApi(3);
                 });
               },
@@ -379,7 +382,7 @@ class _WithdrawalScreenState extends State<WithdrawalScreen> {
 
 
   withdrawalRequest(){
-   return Container(
+   return  getTransactionModel == null? Center(child: CircularProgressIndicator()) : getTransactionModel!.withdrawdata!.isEmpty?  Center(child: Text("No Withdrawal List Found!!")):Container(
      height:  MediaQuery.of(context).size.height/1.2,
      child: ListView.builder(
          itemCount: getTransactionModel?.withdrawdata?.length,
@@ -387,14 +390,18 @@ class _WithdrawalScreenState extends State<WithdrawalScreen> {
            return Card(
              child: Padding(
                padding: const EdgeInsets.all(8.0),
-               child: Column(
-                 crossAxisAlignment: CrossAxisAlignment.start,
-                 children: [
-                   getTransactionModel?.withdrawdata?[i].acHolderName == "" ? Text(" No acHolderName"): Text("${getTransactionModel?.withdrawdata?[i].acHolderName}"),
-                  SizedBox(height: 5,),
-                  Text("${getTransactionModel?.withdrawdata?[i].requestNumber}"),
-                  Text("₹ ${getTransactionModel?.withdrawdata?[i].requestAmount}"),
-                 ],
+               child: Padding(
+                 padding: const EdgeInsets.all(8.0),
+                 child: Column(
+                   crossAxisAlignment: CrossAxisAlignment.start,
+                   children: [
+                     getTransactionModel?.withdrawdata?[i].acHolderName == "" ? Text(" No acHolderName"): Text("${getTransactionModel?.withdrawdata?[i].acHolderName}"),
+                    SizedBox(height: 3,),
+                    Text("${getTransactionModel?.withdrawdata?[i].requestNumber}"),
+                     SizedBox(height: 3,),
+                    Text("₹ ${getTransactionModel?.withdrawdata?[i].requestAmount}"),
+                   ],
+                 ),
                ),
              ),
            );
@@ -407,7 +414,7 @@ class _WithdrawalScreenState extends State<WithdrawalScreen> {
       'Content-Type': 'application/json',
       'Cookie': 'ci_session=0c843f87edbac1212c2ea7bef4659a143e3ccbd2'
     };
-    var request = http.Request('POST', Uri.parse('https://developmentalphawizz.com/lottery/Apicontroller/apiUserWithdrawFundRequest'));
+    var request = http.Request('POST', Uri.parse('$baseUrl1/Apicontroller/apiUserWithdrawFundRequest'));
     request.body = json.encode({
       "user_id":userId,
       "request_amount":amountController.text,
@@ -488,26 +495,50 @@ class _WithdrawalScreenState extends State<WithdrawalScreen> {
     );
   }
   GetTransactionModel? getTransactionModel;
+  // getTransactionApi() async {
+  //   var headers = {
+  //     'Content-Type': 'application/json',
+  //     'Cookie': 'ci_session=18afbdd33b04ace40a80944d83e9e23e3ab91c3e'
+  //   };
+  //   var request = http.Request('POST', Uri.parse('$baseUrl1/Apicontroller/apiUserWithdrawTransactionHistory'));
+  //   request.body = json.encode({
+  //     "user_id":userId
+  //   });
+  //   print('_____request.body_____${request.body}_________');
+  //   request.headers.addAll(headers);
+  //   http.StreamedResponse response = await request.send();
+  //   if (response.statusCode == 200) {
+  //     var result = await response.stream.bytesToString();
+  //     var finalResult  = GetTransactionModel.fromJson(json.decode(result));
+  //     Fluttertoast.showToast(msg: "${finalResult.msg}");
+  //     setState(() {
+  //       getTransactionModel = finalResult;
+  //     });
+  //   }
+  //   else {
+  //     print(response.reasonPhrase);
+  //   }
+  //
+  // }
+
+
   getTransactionApi() async {
     var headers = {
       'Content-Type': 'application/json',
-      'Cookie': 'ci_session=18afbdd33b04ace40a80944d83e9e23e3ab91c3e'
+      'Cookie': 'ci_session=329e84d8baf5bbe6fc18f412bda3e26574156d56'
     };
-    var request = http.Request('POST', Uri.parse('https://developmentalphawizz.com/lottery/Apicontroller/apiUserWithdrawTransactionHistory'));
+    var request = http.Request('POST', Uri.parse('$baseUrl1/Apicontroller/apiUserWithdrawTransactionHistory'));
     request.body = json.encode({
-      "user_id": userId
+      "user_id":userId
     });
-    print('_____request.body_____${request.body}_________');
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 200) {
-      var result = await response.stream.bytesToString();
-      var finalResult  =  GetTransactionModel.fromJson(json.decode(result));
-      print('____result______${result}_________');
+      var result  = await response.stream.bytesToString();
+      var finalResult = GetTransactionModel.fromJson(json.decode(result));
       Fluttertoast.showToast(msg: "${finalResult.msg}");
       setState(() {
         getTransactionModel = finalResult;
-        print("withdraaaaaa ${getTransactionModel?.withdrawdata}");
       });
     }
     else {

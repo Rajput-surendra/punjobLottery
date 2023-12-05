@@ -329,7 +329,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   child: Row(
                                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                     children: [
-                                                      Text("${lotteryModel!.data!.lotteries![index].userCount}",style: TextStyle(color: AppColors.whit,fontSize: 12),),
+                                                      Text("${lotteryModel!.data!.lotteries![index].gameName}",style: TextStyle(color: AppColors.whit,fontSize: 12),),
                                                       lotteryModel!.data!.lotteries![index].active == '0' ?  Text("Betting is Running Now",style: TextStyle(color: AppColors.whit,fontSize: 12),):SizedBox.shrink(),
                                                       Container(
                                                         height: 45,width: 50,

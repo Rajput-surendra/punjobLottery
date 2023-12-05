@@ -54,7 +54,6 @@ class _VideoState extends State<Video> {
               itemCount: videoModel?.content?.length ?? 0,
               itemBuilder: (context,i){
                 var  showData = videoModel?.content?[i];
-                print('______vController[i]_____${_vController[i]}_________');
                 return Card(
                   elevation: 2,
                   child: Padding(
@@ -70,7 +69,7 @@ class _VideoState extends State<Video> {
                           //  height:MediaQuery.of(context).size.height/3.2,
                           margin: const EdgeInsets.only(bottom: 10),
                           child:
-                          Stack(
+                           Stack(
                             alignment: Alignment.center,
                             children: [
                               Column(
