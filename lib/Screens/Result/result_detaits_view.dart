@@ -1,6 +1,7 @@
 
 import 'dart:convert';
 
+import 'package:booknplay/Services/api_services/apiConstants.dart';
 import 'package:booknplay/Utils/Colors.dart';
 
 import 'package:flutter/cupertino.dart';
@@ -40,7 +41,7 @@ class _ResultDetailsScreenState extends State<ResultDetailsScreen> {
               ),),
             toolbarHeight: 60,
             centerTitle: true,
-            title: const Text("Result  Details",style: TextStyle(fontSize: 17),),
+            title: const Text("Result Details",style: TextStyle(fontSize: 17),),
             flexibleSpace: Container(
               decoration: const BoxDecoration(
                 borderRadius:   BorderRadius.only(
@@ -114,7 +115,7 @@ class _ResultDetailsScreenState extends State<ResultDetailsScreen> {
       'Content-Type': 'application/json',
       'Cookie': 'ci_session=cefaa9477065503c4ca2ed67af58f3c87c6bfab4'
     };
-    var request = http.Request('POST', Uri.parse('https://developmentalphawizz.com/lottery/Apicontroller/getResults'));
+    var request = http.Request('POST', Uri.parse('$baseUrl1/Apicontroller/getResults'));
     request.body = json.encode({
       'game_id':widget.gId
     });
@@ -126,7 +127,6 @@ class _ResultDetailsScreenState extends State<ResultDetailsScreen> {
       var finalResult = GetResultDetailsModel.fromJson(json.decode(result));
       setState(() {
         getResultDetailsModel = finalResult;
-        print("------Surendra-------${result}----------");
       });
       Fluttertoast.showToast(msg: "${finalResult.msg}");
 

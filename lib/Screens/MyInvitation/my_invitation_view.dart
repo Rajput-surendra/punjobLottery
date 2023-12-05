@@ -62,7 +62,7 @@ class _MyInvitationState extends State<MyInvitation> {
         ),
         body: SingleChildScrollView(
 
-          child:myInvationModel == null ?Center(child: CircularProgressIndicator()):myInvationModel?.invitees?.length == 0 ?Center(child: Text("No Invation List!! ")) :Container(
+          child:myInvationModel == null ?Center(child: CircularProgressIndicator()):myInvationModel!.invitees!.length == 0 ?Center(child: Text("No Invation List!! ")) :Container(
             height: MediaQuery.of(context).size.height/1.1,
             child: ListView.builder(
               itemCount: myInvationModel?.invitees?.length ?? 0,
@@ -83,14 +83,17 @@ class _MyInvitationState extends State<MyInvitation> {
                                 Text("${myInvationModel?.invitees?[i].userName}",style: TextStyle(color: AppColors.fntClr,fontWeight: FontWeight.bold),)
                               ],
                             ),
-                            Row(
+                               SizedBox(height: 3,),
+
+                               Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text("Mobile: "),
+                                Text("Mobile No: "),
                                 SizedBox(height: 3,),
                                 Text("${myInvationModel?.invitees?[i].mobile}",style: TextStyle(color: AppColors.fntClr,fontWeight: FontWeight.bold))
                               ],
                             ),
+                            SizedBox(height: 3,),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -107,37 +110,6 @@ class _MyInvitationState extends State<MyInvitation> {
                }),
           ),
         )
-        // Center(
-        //   child: Column(
-        //     mainAxisAlignment: MainAxisAlignment.center,
-        //     children: [
-        //       Padding(
-        //         padding: const EdgeInsets.all(8.0),
-        //         child: Image.asset("assets/images/splash_logo.png",height: 150,),
-        //       ),
-        //       Text(
-        //         'Your Invitation Code:',
-        //         style: TextStyle(fontSize: 18),
-        //       ),
-        //       SizedBox(height: 10),
-        //       Text(
-        //         "invitationCode",
-        //         style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-        //       ),
-        //       SizedBox(height: 20),
-        //       Padding(
-        //         padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 20),
-        //         child: AppButton1(
-        //           onTap: (){
-        //             share();
-        //           },
-        //           title: "Invitation Code",
-        //         ),
-        //       ),
-        //
-        //     ],
-        //   ),
-        // ),
     );
 
   }
@@ -158,8 +130,10 @@ class _MyInvitationState extends State<MyInvitation> {
     };
     var request = http.Request('POST', Uri.parse('$baseUrl1/Apicontroller/apiGetInvitees'));
     request.body = json.encode({
-      "referred_by":userReferCode
+      // "referred_by":userReferCode
+      "referred_by":'2675db01c965'
     });
+    print('___request.body_______${request.body}_________');
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 200) {
@@ -176,24 +150,6 @@ class _MyInvitationState extends State<MyInvitation> {
     }
 
   }
-
-  // Future<void> getInvatation() async {
-  //   var param = {
-  //     "referred_by":"2675db01c965"
-  //   };
-  //   print('_____getData_____${param}_________');
-  //   apiBaseHelper.postAPICall(getInviteeAPI,param).then((getData) {
-  //     print('____getData______${getData}_________');
-  //     String msg = getData['msg'];
-  //     setState(() {
-  //       myInvationModel = GetInvaiteModel.fromJson(getData);
-  //     });
-  //
-  //     Fluttertoast.showToast(msg: msg);
-  //     //isLoading.value = false;
-  //   });
-  // }
-
 
 }
 class InvitationCodeGenerator {
