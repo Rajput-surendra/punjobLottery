@@ -124,7 +124,7 @@ class _EnquiryState extends State<Enquiry> {
     'Content-Type': 'application/json',
     'Cookie': 'ci_session=cc2f49dfd8b9108ae58a179239b5497bb9eefd82'
   };
-  var request = http.Request('POST', Uri.parse('https://developmentalphawizz.com/lottery/Apicontroller/apiSubmitContactUs'));
+  var request = http.Request('POST', Uri.parse('https://punjablottery.online/Apicontroller/apiSubmitContactUs'));
   request.body = json.encode({
     'user_id':userId.toString(),
     'enquiry':nameController.text,

@@ -1,5 +1,5 @@
 /// msg : "Lotteries list."
-/// data : {"name":"Matka Lottery","lotteries":[{"game_id":"24","game_name":"Matka Lottery","game_name_hindi":"","open_time":"02:00 PM","open_time_sort":"00:00:00","close_time":"06:30 PM","status":"1","result_status":"1","market_status":"1","market_off_day":"","date":"2023-11-22","end_date":"2023-11-24","result_date":"2023-11-27","result_time":"12:12","ticket_price":"500","image":"https://developmentalphawizz.com/lottery/assets/images/1700829485alpha_giftnew_logo.png","lottery_number":"","user_count":"0","active":"1"},{"game_id":"25","game_name":"Matka Lottery","game_name_hindi":"","open_time":"11:11 AM","open_time_sort":"00:00:00","close_time":"12:12 PM","status":"1","result_status":"1","market_status":"1","market_off_day":"","date":"2023-11-22","end_date":"2023-11-25","result_date":"2023-11-30","result_time":"12:12","ticket_price":"20","image":"https://developmentalphawizz.com/lottery/assets/images/","lottery_number":"","user_count":"0","active":"1"}]}
+/// data : {"name":"Matka Lottery","lotteries":[{"game_id":"24","game_name":"Matka Lottery","game_name_hindi":"","open_time":"02:00 PM","open_time_sort":"00:00:00","close_time":"06:30 PM","status":"1","result_status":"1","market_status":"1","market_off_day":"","date":"2023-11-22","end_date":"2023-11-24","result_date":"2023-11-27","result_time":"12:12","ticket_price":"500","image":"https://punjablottery.online/assets/images/1700829485alpha_giftnew_logo.png","lottery_number":"","user_count":"0","active":"1"},{"game_id":"25","game_name":"Matka Lottery","game_name_hindi":"","open_time":"11:11 AM","open_time_sort":"00:00:00","close_time":"12:12 PM","status":"1","result_status":"1","market_status":"1","market_off_day":"","date":"2023-11-22","end_date":"2023-11-25","result_date":"2023-11-30","result_time":"12:12","ticket_price":"20","image":"https://punjablottery.online/assets/images/","lottery_number":"","user_count":"0","active":"1"}]}
 
 class MyLotteryModel {
   MyLotteryModel({
@@ -35,7 +35,7 @@ MyLotteryModel copyWith({  String? msg,
 }
 
 /// name : "Matka Lottery"
-/// lotteries : [{"game_id":"24","game_name":"Matka Lottery","game_name_hindi":"","open_time":"02:00 PM","open_time_sort":"00:00:00","close_time":"06:30 PM","status":"1","result_status":"1","market_status":"1","market_off_day":"","date":"2023-11-22","end_date":"2023-11-24","result_date":"2023-11-27","result_time":"12:12","ticket_price":"500","image":"https://developmentalphawizz.com/lottery/assets/images/1700829485alpha_giftnew_logo.png","lottery_number":"","user_count":"0","active":"1"},{"game_id":"25","game_name":"Matka Lottery","game_name_hindi":"","open_time":"11:11 AM","open_time_sort":"00:00:00","close_time":"12:12 PM","status":"1","result_status":"1","market_status":"1","market_off_day":"","date":"2023-11-22","end_date":"2023-11-25","result_date":"2023-11-30","result_time":"12:12","ticket_price":"20","image":"https://developmentalphawizz.com/lottery/assets/images/","lottery_number":"","user_count":"0","active":"1"}]
+/// lotteries : [{"game_id":"24","game_name":"Matka Lottery","game_name_hindi":"","open_time":"02:00 PM","open_time_sort":"00:00:00","close_time":"06:30 PM","status":"1","result_status":"1","market_status":"1","market_off_day":"","date":"2023-11-22","end_date":"2023-11-24","result_date":"2023-11-27","result_time":"12:12","ticket_price":"500","image":"https://punjablottery.online/assets/images/1700829485alpha_giftnew_logo.png","lottery_number":"","user_count":"0","active":"1"},{"game_id":"25","game_name":"Matka Lottery","game_name_hindi":"","open_time":"11:11 AM","open_time_sort":"00:00:00","close_time":"12:12 PM","status":"1","result_status":"1","market_status":"1","market_off_day":"","date":"2023-11-22","end_date":"2023-11-25","result_date":"2023-11-30","result_time":"12:12","ticket_price":"20","image":"https://punjablottery.online/assets/images/","lottery_number":"","user_count":"0","active":"1"}]
 
 class Data {
   Data({
@@ -90,7 +90,7 @@ Data copyWith({  String? name,
 /// result_date : "2023-11-27"
 /// result_time : "12:12"
 /// ticket_price : "500"
-/// image : "https://developmentalphawizz.com/lottery/assets/images/1700829485alpha_giftnew_logo.png"
+/// image : "https://punjablottery.online/assets/images/1700829485alpha_giftnew_logo.png"
 /// lottery_number : ""
 /// user_count : "0"
 /// active : "1"

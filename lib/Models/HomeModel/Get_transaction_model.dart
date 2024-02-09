@@ -1,6 +1,6 @@
 /// withdraw_open_time : "09:00 AM"
 /// withdraw_close_time : "12:30 PM"
-/// withdrawdata : [{"withdraw_request_id":"2","request_amount":"7","upi_id":"","request_number":"7534169","request_status":"1","payment_method":"1","bank_name":"","branch_address":"","ac_holder_name":"","ac_number":"","ifsc_code":"","paytm_number":"","google_pay_number":"","phone_pay_number":"","remark":"tt","payment_receipt":"https://developmentalphawizz.com/lottery/uploads/file/","insert_date":"24 Nov 2023 06:22:50 PM"},{"withdraw_request_id":"1","request_amount":"150","upi_id":"sadsdsfdsd65","request_number":"2951198","request_status":"0","payment_method":"2","bank_name":"","branch_address":"","ac_holder_name":"","ac_number":"","ifsc_code":"","paytm_number":"","google_pay_number":"","phone_pay_number":"","remark":"","payment_receipt":"https://developmentalphawizz.com/lottery/uploads/file/","insert_date":"24 Nov 2023 05:43:03 PM"}]
+/// withdrawdata : [{"withdraw_request_id":"2","request_amount":"7","upi_id":"","request_number":"7534169","request_status":"1","payment_method":"1","bank_name":"","branch_address":"","ac_holder_name":"","ac_number":"","ifsc_code":"","paytm_number":"","google_pay_number":"","phone_pay_number":"","remark":"tt","payment_receipt":"https://punjablottery.online/uploads/file/","insert_date":"24 Nov 2023 06:22:50 PM"},{"withdraw_request_id":"1","request_amount":"150","upi_id":"sadsdsfdsd65","request_number":"2951198","request_status":"0","payment_method":"2","bank_name":"","branch_address":"","ac_holder_name":"","ac_number":"","ifsc_code":"","paytm_number":"","google_pay_number":"","phone_pay_number":"","remark":"","payment_receipt":"https://punjablottery.online/uploads/file/","insert_date":"24 Nov 2023 05:43:03 PM"}]
 /// last_request_status : "1"
 /// msg : "Withdraw Trasaction Data"
 /// status : true
@@ -99,7 +99,7 @@ GetTransactionModel copyWith({  String? withdrawOpenTime,
 /// google_pay_number : ""
 /// phone_pay_number : ""
 /// remark : "tt"
-/// payment_receipt : "https://developmentalphawizz.com/lottery/uploads/file/"
+/// payment_receipt : "https://punjablottery.online/uploads/file/"
 /// insert_date : "24 Nov 2023 06:22:50 PM"
 
 class Withdrawdata {

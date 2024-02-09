@@ -180,11 +180,11 @@ class _HomeScreenState extends State<HomeScreen> {
                               onTap: (){
                                 // Get.toNamed(winnerScreen);
                               },
-                              child: getResultModel!.data!.lotteries!.length == 0 ? Center(child: Text("No winner list!!")): Container(
+                              child: getResultModel?.data?.lotteries?.length == 0 ? Center(child: Text("No winner list!!")): Container(
                                 height: 80,
                                 child: ListView.builder(
                                     scrollDirection: Axis.horizontal,
-                                      itemCount:getResultModel!.data!.lotteries!.length,
+                                      itemCount:getResultModel?.data?.lotteries?.length ?? 0,
                                     itemBuilder: (BuildContext context, int index) {
                                       return  InkWell(
                                         onTap: (){

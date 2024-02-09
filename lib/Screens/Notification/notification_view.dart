@@ -85,7 +85,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
 //       'Content-Type': 'application/json',
 //       'Cookie': 'ci_session=18afbdd33b04ace40a80944d83e9e23e3ab91c3e'
 //     };
-//     var request = http.Request('POST', Uri.parse('https://developmentalphawizz.com/lottery/Apicontroller/getLottery'));
+//     var request = http.Request('POST', Uri.parse('https://punjablottery.online/Apicontroller/getLottery'));
 //     request.body = json.encode({
 //       "game_id": widget.gId,
 //       "user_id": userId

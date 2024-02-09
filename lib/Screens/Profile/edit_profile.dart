@@ -268,7 +268,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     var headers = {
       'Cookie': 'ci_session=df5385d665217dba30014022ebc9598ab69bb28d'
     };
-    var request = http.MultipartRequest('POST', Uri.parse('https://developmentalphawizz.com/lottery/Apicontroller/apiProfileUpdate'));
+    var request = http.MultipartRequest('POST', Uri.parse('https://punjablottery.online/Apicontroller/apiProfileUpdate'));
     request.fields.addAll({
       'user_name':nameController.text,
       'user_id':userId.toString()

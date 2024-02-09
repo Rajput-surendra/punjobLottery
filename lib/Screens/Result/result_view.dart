@@ -214,7 +214,7 @@ class _ResultScreenState extends State<ResultScreen> {
       'Content-Type': 'application/json',
       'Cookie': 'ci_session=4b8b6274f26a280877c08cfedab1d6e9b46e4d2d'
     };
-    var request = http.Request('POST', Uri.parse('https://developmentalphawizz.com/lottery/Apicontroller/getResults'));
+    var request = http.Request('POST', Uri.parse('https://punjablottery.online/Apicontroller/getResults'));
     request.body = json.encode({
       "user_id":userId
     });

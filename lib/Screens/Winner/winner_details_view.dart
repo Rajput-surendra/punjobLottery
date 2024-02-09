@@ -142,7 +142,7 @@ class _WinnerDetailsScreenState extends State<WinnerDetailsScreen> {
       'Content-Type': 'application/json',
       'Cookie': 'ci_session=cefaa9477065503c4ca2ed67af58f3c87c6bfab4'
     };
-    var request = http.Request('POST', Uri.parse('https://developmentalphawizz.com/lottery/Apicontroller/getResults'));
+    var request = http.Request('POST', Uri.parse('https://punjablottery.online/Apicontroller/getResults'));
     request.body = json.encode({
       'game_id': widget.gId
     });
