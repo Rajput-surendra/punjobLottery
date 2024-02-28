@@ -94,6 +94,18 @@ class _HomeScreenState extends State<HomeScreen> {
                       color: Colors.black
                   ),),
                 ),
+                // Stack(
+                //   children: [
+                //     CircleAvatar(),
+                //     Positioned(
+                //       top: 10,
+                //         left: 0,
+                //         right: 0,
+                //         bottom: 0,
+                //         child: Icon(Icons.add,color: AppColors.red,)),
+                //
+                //   ],
+                // ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

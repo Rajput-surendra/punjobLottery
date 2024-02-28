@@ -269,17 +269,32 @@ class _WinnerScreenState extends State<WinnerScreen> {
                                         ),
                                       ],
                                     ),
-                                    Row(
-                                      children: [
-                                        Text(
-                                            "Open: ${lotteryDetailsModel!.data!.lottery!.openTime}"),
-                                        const SizedBox(
-                                          width: 5,
-                                        ),
-                                        Text(
-                                            "Close ${lotteryDetailsModel!.data!.lottery!.closeTime}"),
-                                      ],
+                                    // Row(
+                                    //   children: [
+                                    //     Text(
+                                    //         "Open: ${lotteryDetailsModel!.data!.lottery!.openTime}"),
+                                    //     const SizedBox(
+                                    //       width: 5,
+                                    //     ),
+                                    //     Text(
+                                    //         "Close ${lotteryDetailsModel!.data!.lottery!.closeTime}"),
+                                    //   ],
+                                    // ),
+                                  ],
+                                ),
+                                SizedBox(height: 5,),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                        "Open: ${lotteryDetailsModel!.data!.lottery!.openTime}",style: TextStyle(
+                                      color: AppColors.fntClr
+                                    ),),
+                                    const SizedBox(
+                                      width: 5,
                                     ),
+                                    Text(
+                                        "Close ${lotteryDetailsModel!.data!.lottery!.closeTime}"),
                                   ],
                                 ),
                                 const SizedBox(

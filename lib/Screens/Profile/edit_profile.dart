@@ -185,7 +185,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     ),
                   ) :
 
-                  Container(
+                  SizedBox(
                     height: 100,
                     width: 100,
                     child: ClipRRect(

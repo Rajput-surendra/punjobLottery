@@ -88,14 +88,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget bodyWidget(BuildContext context, ) {
     return RefreshIndicator(
       onRefresh: () {
-        return Future.delayed(Duration(seconds: 2),(){
+        return Future.delayed(const Duration(seconds: 2),(){
          // get();
         });
       },
       child: ListView.builder(
         itemCount: 1,
           itemBuilder: (context,i){
-        return  getProfileModel == null || getProfileModel == " " ? Center(child: CircularProgressIndicator()): SingleChildScrollView(
+        return  getProfileModel == null || getProfileModel == " " ? const Center(child: CircularProgressIndicator()): SingleChildScrollView(
           child: Column(
             children: [
               Stack(
@@ -133,7 +133,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       top: MediaQuery.sizeOf(context).height / 25,
                       right: MediaQuery.sizeOf(context).width / 4,
                       left: MediaQuery.sizeOf(context).width / 2.9,
-                      child:Text("My Account",style: TextStyle(color: AppColors.whit,fontSize: 20,fontWeight: FontWeight.bold),) ),
+                      child:const Text("My Account",style: TextStyle(color: AppColors.whit,fontSize: 20,fontWeight: FontWeight.bold),) ),
                   Positioned(
                     top: MediaQuery.sizeOf(context).height / 11,
                     right: MediaQuery.sizeOf(context).width / 3,
@@ -164,7 +164,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               // )),
               // isEditProfile ? const SizedBox.shrink() :
               Padding(
-                padding:  EdgeInsets.all(8.0),
+                padding:  const EdgeInsets.all(8.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -174,8 +174,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       onTap: (){
                         Navigator.push(context, MaterialPageRoute(builder: (context)=>EditProfileScreen(getProfileModel: getProfileModel,))).then((value) => getProfile());
                       },
-                        child: Text("Edit Profile",style: TextStyle(color: AppColors.secondary,fontSize: 15,fontWeight: FontWeight.bold),))),
-                    SizedBox(height: 15,),
+                        child: const Text("Edit Profile",style: TextStyle(color: AppColors.secondary,fontSize: 15,fontWeight: FontWeight.bold),))),
+                    const SizedBox(height: 15,),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -187,19 +187,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 border: Border.all(color: AppColors.fntClr)
                             ),
                             child:  Padding(
-                              padding: EdgeInsets.all(8.0),
+                              padding: const EdgeInsets.all(8.0),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Image.asset("assets/images/Balance.png",height: 20,color: AppColors.profileColor,),
-                                  Text("Balance : ",style: TextStyle(color: AppColors.fntClr,fontWeight: FontWeight.bold),),
-                                  Text("${getProfileModel?.profile?.walletBalance}",style: TextStyle(color: AppColors.profileColor),),
+                                  const Text("Balance : ",style: TextStyle(color: AppColors.fntClr,fontWeight: FontWeight.bold),),
+                                  Text("${getProfileModel?.profile?.walletBalance}",style: const TextStyle(color: AppColors.profileColor),),
                                 ],
                               ),
                             ),
                           ),
                         ),
-                        SizedBox(width: 5,),
+                        const SizedBox(width: 5,),
                         Expanded(
                           child: InkWell(
                             onTap: (){
@@ -213,13 +213,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   border: Border.all(color: AppColors.fntClr)
                               ),
                               child:  Padding(
-                                padding: EdgeInsets.all(8.0),
+                                padding: const EdgeInsets.all(8.0),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     Image.asset("assets/images/Refer & Earn.png",height: 20,color: AppColors.profileColor,),
-                                    Text("Refer & Earn ",style: TextStyle(color: AppColors.fntClr,fontWeight: FontWeight.bold),),
-                                    Icon(Icons.arrow_forward_ios_outlined,color: AppColors.greyColor,size: 17,)
+                                    const Text("Refer & Earn ",style: TextStyle(color: AppColors.fntClr,fontWeight: FontWeight.bold),),
+                                    const Icon(Icons.arrow_forward_ios_outlined,color: AppColors.greyColor,size: 17,)
                                   ],
                                 ),
                               ),
@@ -257,7 +257,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     //     ),
                     //   ),
                     // ),
-                    SizedBox(height: 10,),
+                    const SizedBox(height: 10,),
                     InkWell(
                       onTap: (){
                         Get.toNamed(addMoney);
@@ -269,24 +269,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             border: Border.all(color: AppColors.fntClr)
                         ),
                         child:  Padding(
-                          padding: EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(8.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Row(
                                 children: [
                                   Image.asset("assets/images/Add Money.png",height: 20,color: AppColors.profileColor,),
-                                  SizedBox(width: 10,),
-                                  Text("Add Money",style: TextStyle(color: AppColors.fntClr,fontWeight: FontWeight.bold),),
+                                  const SizedBox(width: 10,),
+                                  const Text("Add Money",style: TextStyle(color: AppColors.fntClr,fontWeight: FontWeight.bold),),
                                 ],
                               ),
-                              Icon(Icons.arrow_forward_ios_outlined,color: AppColors.greyColor,size: 17,)
+                              const Icon(Icons.arrow_forward_ios_outlined,color: AppColors.greyColor,size: 17,)
                             ],
                           ),
                         ),
                       ),
                     ),
-                    SizedBox(height: 10,),
+                    const SizedBox(height: 10,),
                     InkWell(
                       onTap: (){
                         Navigator.push(context, MaterialPageRoute(builder: (context)=>WithdrawalScreen()));
@@ -298,24 +298,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             border: Border.all(color: AppColors.fntClr)
                         ),
                         child:  Padding(
-                          padding: EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(8.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Row(
                                 children: [
                                   Image.asset("assets/images/Withdrawal.png",height: 20,color: AppColors.profileColor,),
-                                  SizedBox(width: 10,),
-                                  Text("Withdrawal",style: TextStyle(color: AppColors.fntClr,fontWeight: FontWeight.bold),),
+                                  const SizedBox(width: 10,),
+                                  const Text("Withdrawal",style: TextStyle(color: AppColors.fntClr,fontWeight: FontWeight.bold),),
                                 ],
                               ),
-                              Icon(Icons.arrow_forward_ios_outlined,color: AppColors.greyColor,size: 17,)
+                              const Icon(Icons.arrow_forward_ios_outlined,color: AppColors.greyColor,size: 17,)
                             ],
                           ),
                         ),
                       ),
                     ),
-                    SizedBox(height: 10,),
+                    const SizedBox(height: 10,),
                     InkWell(
                       onTap: (){
                         Get.toNamed(invitation);
@@ -327,24 +327,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             border: Border.all(color: AppColors.fntClr)
                         ),
                         child:  Padding(
-                          padding: EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(8.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Row(
                                 children: [
                                   Image.asset("assets/images/My Invitation.png",height: 20,color: AppColors.profileColor,),
-                                  SizedBox(width: 10,),
-                                  Text("My Invitation",style: TextStyle(color: AppColors.fntClr,fontWeight: FontWeight.bold),),
+                                  const SizedBox(width: 10,),
+                                  const Text("My Invitation",style: TextStyle(color: AppColors.fntClr,fontWeight: FontWeight.bold),),
                                 ],
                               ),
-                              Icon(Icons.arrow_forward_ios_outlined,color: AppColors.greyColor,size: 17,)
+                              const Icon(Icons.arrow_forward_ios_outlined,color: AppColors.greyColor,size: 17,)
                             ],
                           ),
                         ),
                       ),
                     ),
-                    SizedBox(height: 10,),
+                    const SizedBox(height: 10,),
                     InkWell(
                       onTap: (){
                         Navigator.push(context, MaterialPageRoute(builder: (context)=>TransactionScreen()));
@@ -356,24 +356,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             border: Border.all(color: AppColors.fntClr)
                         ),
                         child:  Padding(
-                          padding: EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(8.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Row(
                                 children: [
                                   Image.asset("assets/images/My Transaction.png",height: 20,color: AppColors.profileColor,),
-                                  SizedBox(width: 10,),
-                                  Text("My Transaction",style: TextStyle(color: AppColors.fntClr,fontWeight: FontWeight.bold),),
+                                  const SizedBox(width: 10,),
+                                  const Text("My Transaction",style: TextStyle(color: AppColors.fntClr,fontWeight: FontWeight.bold),),
                                 ],
                               ),
-                              Icon(Icons.arrow_forward_ios_outlined,color: AppColors.greyColor,size: 17,)
+                              const Icon(Icons.arrow_forward_ios_outlined,color: AppColors.greyColor,size: 17,)
                             ],
                           ),
                         ),
                       ),
                     ),
-                    SizedBox(height: 10,),
+                    const SizedBox(height: 10,),
 
                     InkWell(
                       onTap: (){
@@ -387,24 +387,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             border: Border.all(color: AppColors.fntClr)
                         ),
                         child:  Padding(
-                          padding: EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(8.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Row(
                                 children: [
                                   Image.asset("assets/images/notification.png",height: 20,color: AppColors.profileColor,),
-                                  SizedBox(width: 10,),
-                                  Text("Notice",style: TextStyle(color: AppColors.fntClr,fontWeight: FontWeight.bold),),
+                                  const SizedBox(width: 10,),
+                                  const Text("Notice",style: TextStyle(color: AppColors.fntClr,fontWeight: FontWeight.bold),),
                                 ],
                               ),
-                              Icon(Icons.arrow_forward_ios_outlined,color: AppColors.greyColor,size: 17,)
+                              const Icon(Icons.arrow_forward_ios_outlined,color: AppColors.greyColor,size: 17,)
                             ],
                           ),
                         ),
                       ),
                     ),
-                    SizedBox(height: 10,),
+                    const SizedBox(height: 10,),
                     InkWell(
                       onTap: (){
                         Get.toNamed(video);
@@ -417,24 +417,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             border: Border.all(color: AppColors.fntClr)
                         ),
                         child:  Padding(
-                          padding: EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(8.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Row(
                                 children: [
                                   Image.asset("assets/images/How to Play.png",height: 20,color: AppColors.profileColor,),
-                                  SizedBox(width: 10,),
-                                  Text("How to Play",style: TextStyle(color: AppColors.fntClr,fontWeight: FontWeight.bold),),
+                                  const SizedBox(width: 10,),
+                                  const Text("How to Play",style: TextStyle(color: AppColors.fntClr,fontWeight: FontWeight.bold),),
                                 ],
                               ),
-                              Icon(Icons.arrow_forward_ios_outlined,color: AppColors.greyColor,size: 17,)
+                              const Icon(Icons.arrow_forward_ios_outlined,color: AppColors.greyColor,size: 17,)
                             ],
                           ),
                         ),
                       ),
                     ),
-                    SizedBox(height: 10,),
+                    const SizedBox(height: 10,),
                     InkWell(
                       onTap: (){
                         Get.toNamed(contact);
@@ -446,24 +446,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             border: Border.all(color: AppColors.fntClr)
                         ),
                         child:  Padding(
-                          padding: EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(8.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Row(
                                 children: [
                                   Image.asset("assets/images/Contact Us.png",height: 20,color: AppColors.profileColor,),
-                                  SizedBox(width: 10,),
-                                  Text("Contact Us",style: TextStyle(color: AppColors.fntClr,fontWeight: FontWeight.bold),),
+                                  const SizedBox(width: 10,),
+                                  const Text("Contact Us",style: TextStyle(color: AppColors.fntClr,fontWeight: FontWeight.bold),),
                                 ],
                               ),
-                              Icon(Icons.arrow_forward_ios_outlined,color: AppColors.greyColor,size: 17,)
+                              const Icon(Icons.arrow_forward_ios_outlined,color: AppColors.greyColor,size: 17,)
                             ],
                           ),
                         ),
                       ),
                     ),
-                    SizedBox(height: 10,),
+                    const SizedBox(height: 10,),
                     InkWell(
                       onTap: (){
                         Get.toNamed(enquiry);
@@ -475,24 +475,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             border: Border.all(color: AppColors.fntClr)
                         ),
                         child:  Padding(
-                          padding: EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(8.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Row(
                                 children: [
                                   Image.asset("assets/images/Enquiry.png",height: 20,color: AppColors.profileColor,),
-                                  SizedBox(width: 10,),
-                                  Text("Enquiry",style: TextStyle(color: AppColors.fntClr,fontWeight: FontWeight.bold),),
+                                  const SizedBox(width: 10,),
+                                  const Text("Enquiry",style: TextStyle(color: AppColors.fntClr,fontWeight: FontWeight.bold),),
                                 ],
                               ),
-                              Icon(Icons.arrow_forward_ios_outlined,color: AppColors.greyColor,size: 17,)
+                              const Icon(Icons.arrow_forward_ios_outlined,color: AppColors.greyColor,size: 17,)
                             ],
                           ),
                         ),
                       ),
                     ),
-                    SizedBox(height: 10,),
+                    const SizedBox(height: 10,),
                     InkWell(
                       onTap: (){
                         share();
@@ -505,24 +505,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             border: Border.all(color: AppColors.fntClr)
                         ),
                         child:  Padding(
-                          padding: EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(8.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Row(
                                 children: [
                                   Image.asset("assets/images/rate app.png",height: 20,color: AppColors.profileColor,),
-                                  SizedBox(width: 10,),
-                                  Text("Rate App",style: TextStyle(color: AppColors.fntClr,fontWeight: FontWeight.bold),),
+                                  const SizedBox(width: 10,),
+                                  const Text("Rate App",style: TextStyle(color: AppColors.fntClr,fontWeight: FontWeight.bold),),
                                 ],
                               ),
-                              Icon(Icons.arrow_forward_ios_outlined,color: AppColors.greyColor,size: 17,)
+                              const Icon(Icons.arrow_forward_ios_outlined,color: AppColors.greyColor,size: 17,)
                             ],
                           ),
                         ),
                       ),
                     ),
-                    SizedBox(height: 10,),
+                    const SizedBox(height: 10,),
                     InkWell(
                       onTap: (){
                         Get.toNamed(privacyScreen);
@@ -535,24 +535,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             border: Border.all(color: AppColors.fntClr)
                         ),
                         child:  Padding(
-                          padding: EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(8.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Row(
                                 children: [
                                   Image.asset("assets/images/Privacy Policy.png",height: 20,color: AppColors.profileColor,),
-                                  SizedBox(width: 10,),
-                                  Text("Privacy Policy",style: TextStyle(color: AppColors.fntClr,fontWeight: FontWeight.bold),),
+                                  const SizedBox(width: 10,),
+                                  const Text("Privacy Policy",style: TextStyle(color: AppColors.fntClr,fontWeight: FontWeight.bold),),
                                 ],
                               ),
-                              Icon(Icons.arrow_forward_ios_outlined,color: AppColors.greyColor,size: 17,)
+                              const Icon(Icons.arrow_forward_ios_outlined,color: AppColors.greyColor,size: 17,)
                             ],
                           ),
                         ),
                       ),
                     ),
-                    SizedBox(height: 10,),
+                    const SizedBox(height: 10,),
                     InkWell(
                       onTap: (){
                         Get.toNamed(termConditionScreen);
@@ -565,24 +565,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             border: Border.all(color: AppColors.fntClr)
                         ),
                         child:  Padding(
-                          padding: EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(8.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Row(
                                 children: [
                                   Image.asset("assets/images/Terms & Conditions.png",height: 20,color: AppColors.profileColor,),
-                                  SizedBox(width: 10,),
-                                  Text("Terms and Conditions",style: TextStyle(color: AppColors.fntClr,fontWeight: FontWeight.bold),),
+                                  const SizedBox(width: 10,),
+                                  const Text("Terms and Conditions",style: TextStyle(color: AppColors.fntClr,fontWeight: FontWeight.bold),),
                                 ],
                               ),
-                              Icon(Icons.arrow_forward_ios_outlined,color: AppColors.greyColor,size: 17,)
+                              const Icon(Icons.arrow_forward_ios_outlined,color: AppColors.greyColor,size: 17,)
                             ],
                           ),
                         ),
                       ),
                     ),
-                    SizedBox(height: 10,),
+                    const SizedBox(height: 10,),
                     InkWell(
                       onTap: (){
                         Get.toNamed(faq);
@@ -594,15 +594,44 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             border: Border.all(color: AppColors.fntClr)
                         ),
                         child:  Padding(
-                          padding: EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(8.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Row(
                                 children: [
                                   Image.asset("assets/images/FAQ.png",height: 20,color: AppColors.profileColor,),
+                                  const SizedBox(width: 10,),
+                                  const Text("FAQs",style: TextStyle(color: AppColors.fntClr,fontWeight: FontWeight.bold),),
+                                ],
+                              ),
+                              const Icon(Icons.arrow_forward_ios_outlined,color: AppColors.greyColor,size: 17,)
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 10,),
+                    InkWell(
+                      onTap: (){
+                        deleteAccountDailog();
+                      },
+                      child: Container(
+                        height: 50,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(7),
+                            border: Border.all(color: AppColors.fntClr)
+                        ),
+                        child:  const Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                 Icon(Icons.delete,color: AppColors.profileColor,),
                                   SizedBox(width: 10,),
-                                  Text("FAQs",style: TextStyle(color: AppColors.fntClr,fontWeight: FontWeight.bold),),
+                                  Text("Delete",style: TextStyle(color: AppColors.fntClr,fontWeight: FontWeight.bold),),
                                 ],
                               ),
                               Icon(Icons.arrow_forward_ios_outlined,color: AppColors.greyColor,size: 17,)
@@ -611,7 +640,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 10,),
+                    const SizedBox(height: 10,),
                     InkWell(
                       onTap: (){
                         showDialog(
@@ -654,12 +683,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             border: Border.all(color: AppColors.fntClr)
                         ),
                         child:  Padding(
-                          padding: EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(8.0),
                           child: Row(
                             children: [
                               Image.asset("assets/images/logout.png",height: 20,color: AppColors.profileColor,),
-                              SizedBox(width: 10,),
-                              Text("Logout",style: TextStyle(color: AppColors.fntClr,fontWeight: FontWeight.bold),),
+                              const SizedBox(width: 10,),
+                              const Text("Logout",style: TextStyle(color: AppColors.fntClr,fontWeight: FontWeight.bold),),
                             ],
                           ),
                         ),
@@ -674,6 +703,92 @@ class _ProfileScreenState extends State<ProfileScreen> {
       }),
     );
   }
+
+
+
+  deleteAccountDailog() async {
+    await dialogAnimate(context,
+        StatefulBuilder(builder: (BuildContext context, StateSetter setStater) {
+          return StatefulBuilder(
+              builder: (BuildContext context, StateSetter setStater) {
+                return AlertDialog(
+                  shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(5.0))),
+                  content:  const Text(
+                      "Are you sure you want to delete account ?",
+                      style: TextStyle(color: AppColors.primary)
+                  ),
+                  actions: <Widget>[
+                    TextButton(
+                        child: const Text( "NO",style: TextStyle(color: Colors.black),
+                        ),
+                        onPressed: () {
+                          Navigator.of(context).pop(false);
+                        }),
+                    TextButton(
+                        child:  const Text( "YES",style: TextStyle(color: Colors.black),
+                        ),
+                        onPressed: () {
+                        //  deleteAccount();
+                          Navigator.of(context).pop(false);
+                          // SettingProvider settingProvider =
+                          // Provider.of<SettingProvider>(context, listen: false);
+                          // settingProvider.clearUserSession(context);
+                          // //favList.clear();
+                          // Navigator.of(context).pushNamedAndRemoveUntil(
+                          //     '/home', (Route<dynamic> route) => false);
+                        })
+                  ],
+                );
+              });
+        }));
+  }
+  dialogAnimate(BuildContext context, Widget dialge) {
+    return showGeneralDialog(
+        barrierColor: Colors.black.withOpacity(0.5),
+        transitionBuilder: (context, a1, a2, widget) {
+          return Transform.scale(
+            scale: a1.value,
+            child: Opacity(opacity: a1.value, child: dialge),
+          );
+        },
+        transitionDuration: const Duration(milliseconds: 200),
+        barrierDismissible: true,
+        barrierLabel: '',
+        context: context,
+        // pageBuilder: null
+        pageBuilder: (context, animation1, animation2) {
+          return Container();
+        } //as Widget Function(BuildContext, Animation<double>, Animation<double>)
+    );
+  }
+  deleteAccount() async {
+
+    var headers = {
+      'Cookie': 'ci_session=96944ca78b243ab8f0408ccfec94c5f2d8ca05fc'
+    };
+    var request = http.MultipartRequest('GET', Uri.parse('$baseUrl1/Authentication/delete_account/$userId'));
+    // request.fields.addAll({
+    //   'user_id': userId.toString()
+    // });
+    print('____Som______${request}_________');
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+    if (response.statusCode == 200) {
+      var result = await response.stream.bytesToString();
+      var finalResult =  jsonDecode(result);
+      Fluttertoast.showToast(msg: "${finalResult['message']}");
+      Navigator.push(context, MaterialPageRoute(builder: (context)=>LoginScreen()));
+    }
+    else {
+      print(response.reasonPhrase);
+    }
+
+  }
+
+
+
   Future<void> share() async {
     await FlutterShare.share(
         title: 'Invite Friend',
@@ -685,17 +800,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
 // Function to execute when the user confirms logout
   Widget logOut(context){
     return AlertDialog(
-      title: Text('Confirm Logout'),
-      content: Text('Are you sure you want to log out?'),
+      title: const Text('Confirm Logout'),
+      content: const Text('Are you sure you want to log out?'),
       actions: <Widget>[
         TextButton(
-          child: Text('Cancel'),
+          child: const Text('Cancel'),
           onPressed: () {
             Navigator.of(context).pop();
           },
         ),
         TextButton(
-          child: Text('Logout'),
+          child: const Text('Logout'),
           onPressed: () {
             Navigator.of(context).pop();
           },
@@ -742,12 +857,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(title,
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
               const SizedBox(
                 height: 10,
               ),
               Text(data,
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: AppColors.greyColor,
                       fontSize: 16,
                       fontWeight: FontWeight.bold)),
@@ -774,7 +889,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       const SizedBox(
         width: 5,
       ),
-      Text(title, style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16),)
+      Text(title, style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 16),)
     ]);
   }
 

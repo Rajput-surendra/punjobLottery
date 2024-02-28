@@ -102,7 +102,7 @@ class _TermsAndConditionScreenState extends State<TermsAndConditionScreen> {
       final result =  await response.stream.bytesToString();
       final jsonResponse = json.decode(result);
       setState(() {
-        termsAndCondition = jsonResponse['content'][0]['name'];
+        termsAndCondition = jsonResponse['content'][0]['terms_condition'];
       });
 
     }
