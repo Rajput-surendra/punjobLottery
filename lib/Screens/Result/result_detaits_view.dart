@@ -35,6 +35,7 @@ class _ResultDetailsScreenState extends State<ResultDetailsScreen> {
       child: Scaffold(
           backgroundColor: AppColors.whit,
           appBar: AppBar(
+            foregroundColor: AppColors.whit,
             shape: const RoundedRectangleBorder(
               borderRadius:  BorderRadius.only(
                 bottomLeft: Radius.circular(50.0),bottomRight: Radius.circular(50),
@@ -46,10 +47,11 @@ class _ResultDetailsScreenState extends State<ResultDetailsScreen> {
               decoration: const BoxDecoration(
                 borderRadius:   BorderRadius.only(
                   bottomLeft: Radius.circular(10.0),bottomRight: Radius.circular(10),),
-                gradient: RadialGradient(
-                    center: Alignment.center,
-                    radius: 1.1,
-                    colors: <Color>[AppColors.primary, AppColors.secondary]),
+               color: AppColors.secondary
+                // gradient: RadialGradient(
+                //     center: Alignment.center,
+                //     radius: 1.1,
+                //     colors: <Color>[AppColors.primary, AppColors.secondary]),
               ),
             ),
           ),

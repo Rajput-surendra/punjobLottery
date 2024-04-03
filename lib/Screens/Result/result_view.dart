@@ -13,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:intl/intl.dart';
 
 import '../../Local_Storage/shared_pre.dart';
 import '../../Models/HomeModel/get_result_model.dart';
@@ -39,7 +40,7 @@ class _ResultScreenState extends State<ResultScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppColors.whit,
+        backgroundColor: AppColors.greyColor,
         appBar: AppBar(
           automaticallyImplyLeading: false,
           shape: const RoundedRectangleBorder(
@@ -48,15 +49,16 @@ class _ResultScreenState extends State<ResultScreen> {
             ),),
           toolbarHeight: 60,
           centerTitle: true,
-          title: Text("Result",style: TextStyle(fontSize: 17),),
+          title: Text("Result",style: TextStyle(fontSize: 17,color: AppColors.whit),),
           flexibleSpace: Container(
             decoration: const BoxDecoration(
               borderRadius:   BorderRadius.only(
                 bottomLeft: Radius.circular(10.0),bottomRight: Radius.circular(10),),
-              gradient: RadialGradient(
-                  center: Alignment.center,
-                  radius: 1.1,
-                  colors: <Color>[AppColors.primary, AppColors.secondary]),
+             color:AppColors.secondary
+              // gradient: RadialGradient(
+              //     center: Alignment.center,
+              //     radius: 1.1,
+              //     colors: <Color>[AppColors.primary, AppColors.secondary]),
             ),
           ),
         ),
@@ -71,10 +73,11 @@ class _ResultScreenState extends State<ResultScreen> {
 
                 },
                 child: Container(
-                  height: MediaQuery.of(context).size.height/1.0,
+                  height: MediaQuery.of(context).size.height/1.3,
                   child: ListView.builder(
                       itemCount: 1,
                       itemBuilder: (context,i){
+                      //  print('ticket length ${getResultModel!.data!.lotteries!.length}');
                         return  Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -104,34 +107,42 @@ class _ResultScreenState extends State<ResultScreen> {
                                                     Navigator.push(context, MaterialPageRoute(builder: (context)=>ResultDetailsScreen(gId:getResultModel!.data!.lotteries![index].gameId)));
                                                   },
                                                   child: Container(
-                                                      height: 90,
-                                                      decoration: const BoxDecoration(
-                                                          image: DecorationImage(
-                                                              image: AssetImage("assets/images/myLotterybooking.png"), fit: BoxFit.fill)),
+                                                      height: 95,
+                                                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(5),
+                                                        color: AppColors.whit,),
+                                                      // decoration: const BoxDecoration(
+                                                      //     image: DecorationImage(
+                                                      //         image: AssetImage("assets/images/myLotterybooking.png"), fit: BoxFit.fill)),
                                                       child:  Column(
                                                         children: [
-                                                          Padding(
-                                                            padding: const EdgeInsets.only(left: 5,right: 5),
-                                                            child: Row(
-                                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                              children: [
-                                                                Row(
-                                                                  children: [
-                                                                    Text("Result Date :",style: TextStyle(color: AppColors.whit,fontSize: 12),),
-                                                                    SizedBox(width: 2,),
-                                                                    Text("${getResultModel!.data!.lotteries![index].resultDate}",style: TextStyle(color: AppColors.whit,fontSize: 12),)
-                                                                  ],
-                                                                ),
-                                                                Row(
-                                                                  children: [
-                                                                    SizedBox(height: 25,),
-                                                                    Text("Result Time:",style: TextStyle(color: AppColors.whit,fontSize: 12),),
-                                                                    SizedBox(width: 2,),
-                                                                    Text("${getResultModel!.data!.lotteries![index].resultTime}",style: TextStyle(color: AppColors.whit,fontSize: 12),)
-                                                                  ],
-                                                                ),
+                                                          Container(
+                                                            height: 30,
+                                                            decoration: BoxDecoration(borderRadius: BorderRadius.only(topLeft: Radius.circular(5),topRight: Radius.circular(5)),color: AppColors.secondary),
 
-                                                              ],
+                                                            child: Padding(
+                                                              padding: const EdgeInsets.only(left: 8,right:8),
+                                                              child: Row(
+                                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                children: [
+                                                                  Row(
+                                                                    children: [
+                                                                      Text("Result Date :",style: TextStyle(color: AppColors.whit,fontSize: 12),),
+                                                                      SizedBox(width: 2,),
+
+                                                                      Text("${DateFormat('dd MMM yyyy').format(DateTime.parse(getResultModel!.data!.lotteries![index].resultDate ?? ""))}",style: TextStyle(color: AppColors.whit,fontSize: 12),)
+                                                                    ],
+                                                                  ),
+                                                                  Row(
+                                                                    children: [
+                                                                      SizedBox(height: 25,),
+                                                                      Text("Result Time:",style: TextStyle(color: AppColors.whit,fontSize: 12),),
+                                                                      SizedBox(width: 2,),
+                                                                      Text("${getResultModel!.data!.lotteries![index].resultTime}",style: TextStyle(color: AppColors.whit,fontSize: 12),)
+                                                                    ],
+                                                                  ),
+
+                                                                ],
+                                                              ),
                                                             ),
                                                           ),
                                                           Padding(
@@ -142,9 +153,9 @@ class _ResultScreenState extends State<ResultScreen> {
                                                                 Column(
                                                                   crossAxisAlignment: CrossAxisAlignment.start,
                                                                   children: [
-                                                                    Text("${getResultModel!.data!.lotteries![index].gameName}",style: TextStyle(color: AppColors.whit,fontSize: 12),),
+                                                                    Text("${getResultModel!.data!.lotteries![index].gameName}",style: TextStyle(color: AppColors.black,fontSize: 12),),
                                                                     SizedBox(height: 3,),
-                                                                    Text("1st Price : ${getResultModel!.data!.lotteries![0].winners![0].winnerPrice}",style: TextStyle(color: AppColors.whit,fontSize: 18),),
+                                                                    Text("1st Price : ${getResultModel!.data!.lotteries![0].winners![0].winnerPrice}",style: TextStyle(color: AppColors.black,fontSize: 18),),
 
                                                                   ],
                                                                 ),
@@ -214,11 +225,16 @@ class _ResultScreenState extends State<ResultScreen> {
       'Content-Type': 'application/json',
       'Cookie': 'ci_session=4b8b6274f26a280877c08cfedab1d6e9b46e4d2d'
     };
-    var request = http.Request('POST', Uri.parse('https://punjablottery.online/Apicontroller/getResults'));
-    request.body = json.encode({
-      "user_id":userId
+    // var request = http.Request('POST', Uri.parse('https://punjablottery.online/Apicontroller/getResults'));
+    // request.body = json.encode({
+    //   "user_id":userId
+    // });
+    var request = http.MultipartRequest('POST', Uri.parse('https://punjablottery.online/Apicontroller/getResults'));
+    request.fields.addAll({
+      'user_id': userId ?? ""
     });
-    print('____request.body______${request.body}_________');
+
+    // print('____request.body______11${request.body}_________');
     request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();
@@ -226,6 +242,7 @@ class _ResultScreenState extends State<ResultScreen> {
     if (response.statusCode == 200) {
       var result = await response.stream.bytesToString();
       var finalResult = GetResultModel.fromJson(jsonDecode(result));
+      // print('results   ${finalResult.data?.name}');
       setState(() {
         getResultModel = finalResult;
       });

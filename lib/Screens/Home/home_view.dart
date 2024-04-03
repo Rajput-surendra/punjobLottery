@@ -7,6 +7,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 import '../../Models/HomeModel/get_result_model.dart';
 import '../../Models/HomeModel/get_slider_model.dart';
@@ -39,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: AppColors.whit,
+        backgroundColor: AppColors.greyColor,
         appBar: AppBar(
           automaticallyImplyLeading: false,
 
@@ -49,7 +50,8 @@ class _HomeScreenState extends State<HomeScreen> {
             ),),
           toolbarHeight: 60,
           centerTitle: true,
-          title: const Text("PUNJAB LOTTERY",style: TextStyle(fontSize: 17),),
+          title: const Text("Home",style: TextStyle(fontSize: 17,color: AppColors.whit),),
+          leading: Image.asset('assets/images/tytle_icon.png',scale:25,),
           actions: [
             Padding(
               padding: const EdgeInsets.only(right: 10
@@ -58,17 +60,18 @@ class _HomeScreenState extends State<HomeScreen> {
                 onTap: (){
                  Navigator.push(context, MaterialPageRoute(builder: (context)=>NotificationScreen()));
                 },
-                  child: Image.asset("assets/images/notification.png",height: 15,width:20,color: AppColors.profileColor,)),
+                  child: Image.asset("assets/images/notification.png",height: 15,width:20,color: AppColors.whit,)),
             ),
           ],
           flexibleSpace: Container(
             decoration: const BoxDecoration(
               borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(10.0),bottomRight: Radius.circular(10),),
-              gradient: RadialGradient(
-                  center: Alignment.center,
-                  radius: 1.9,
-                  colors: <Color>[AppColors.primary, AppColors.secondary]),
+            color: AppColors.secondary
+              // gradient: RadialGradient(
+              //     center: Alignment.center,
+              //     radius: 1.9,
+              //     colors: <Color>[AppColors.primary, AppColors.secondary]),
             ),
           ),
         ),
@@ -86,14 +89,14 @@ class _HomeScreenState extends State<HomeScreen> {
             return  Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text('Welcome To Punjab Lottery',style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black
-                  ),),
-                ),
+                // const Padding(
+                //   padding: EdgeInsets.all(8.0),
+                //   child: Text('Welcome To Punjab Lottery',style: TextStyle(
+                //       fontSize: 18,
+                //       fontWeight: FontWeight.bold,
+                //       color: Colors.black
+                //   ),),
+                // ),
                 // Stack(
                 //   children: [
                 //     CircleAvatar(),
@@ -162,7 +165,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
-                      color: AppColors.lotteryColor,
+                      color: AppColors.greyColor,
                       height: 160,
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -171,7 +174,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           children: [
 
                             const Text(
-                              "Winner Lottery",
+                              "Winner List",
                               style: TextStyle(
                                   color: AppColors.fntClr,
                                   fontSize: 18,
@@ -181,7 +184,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               height: 10,
                             ),
                             const Text(
-                              "Daily lotteries 200Rs.",
+                              "Today's Draw List 200Rs.",
                               style: TextStyle(
                                   color: AppColors.fntClr,
                                   fontSize: 12
@@ -212,7 +215,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                             ),
                                           ),
                                           child:  Padding(
-                                            padding: const EdgeInsets.all(8.0),
+                                            padding: const EdgeInsets.all(6.0),
                                             child: Column(
                                               crossAxisAlignment: CrossAxisAlignment.start,
                                               children: [
@@ -257,7 +260,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                     ),
-                    lotteryModel!.data!.lotteries!.length ==  0 ? Center(child: Text("No Lotteries Found!!")):  Padding(
+                    lotteryModel!.data!.lotteries!.length ==  0 ? Center(child: Text("No Data Found!!")):  Padding(
                       padding: const EdgeInsets.all(0.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -295,99 +298,145 @@ class _HomeScreenState extends State<HomeScreen> {
                                         //Get.toNamed(winnerScreen,arguments:lotteryModel?.data?.lotteries?[index].gameId );
                                       },
                                       child: Padding(
-                                        padding: const EdgeInsets.all(5.0),
+                                        padding: const EdgeInsets.all(8.0),
                                         child: Container(
-                                            height: 115,
-                                            decoration: const BoxDecoration(
-                                                image: DecorationImage(
-                                                    image: AssetImage("assets/images/lotteryback.png"), fit: BoxFit.fill)),
-                                            child:  Column(
-                                              children: [
-                                                Padding(
-                                                  padding: const EdgeInsets.only(left: 5,right: 5),
-                                                  child: Row(
-                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                    children: [
-                                                      Row(
-                                                        children: [
+                                          height:100,
 
-                                                          Text("Price:",style: TextStyle(color: AppColors.whit,fontSize: 12),),
-                                                          SizedBox(width: 2,),
-                                                          Text("${lotteryModel!.data!.lotteries![index].ticketPrice}",style: TextStyle(color: AppColors.whit,fontSize: 12),)
-                                                        ],
-                                                      ),
+                                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(5),
+                                            color: AppColors.whit,),
+                                          child: Column(
+                                            children: [
+                                              Container(
 
-                                                      Row(
-                                                        children: [
-                                                          SizedBox(height: 25,),
-                                                          Text("Open:",style: TextStyle(color: AppColors.whit,fontSize: 12),),
-                                                          SizedBox(width: 2,),
-                                                          Text("${lotteryModel!.data!.lotteries![index].openTime}",style: TextStyle(color: AppColors.whit,fontSize: 12),)
-                                                        ],
-                                                      ),
-                                                      Row(
-                                                        children: [
-                                                          SizedBox(height: 25,),
-                                                          Text("Close:",style: TextStyle(color: AppColors.whit,fontSize: 12),),
-                                                          SizedBox(width: 2,),
-                                                          Text("${lotteryModel!.data!.lotteries![index].closeTime}",style: TextStyle(color: AppColors.whit,fontSize: 12),)
-                                                        ],
-                                                      )
-                                                    ],
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding: const EdgeInsets.all(8.0),
+
+                                                child: Padding(
+                                                  padding: const EdgeInsets.only(left: 8,right: 8),
                                                   child: Row(
                                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                     children: [
                                                       Text("${lotteryModel!.data!.lotteries![index].gameName}",style: TextStyle(color: AppColors.whit,fontSize: 12),),
-                                                      lotteryModel!.data!.lotteries![index].active == '0' ?  Text("Betting is Running Now",style: TextStyle(color: AppColors.whit,fontSize: 12),):SizedBox.shrink(),
-                                                      Container(
-                                                        height: 45,width: 50,
-                                                        child: ClipRRect(
-                                                            borderRadius: BorderRadius.circular(10),
-                                                            child: Image.network("${lotteryModel!.data!.lotteries![index].image}",fit: BoxFit.fill,)),
-                                                      ),
+                                                      // Text("Result: ${lotteryModel!.data!.lotteries![index].resultDate}",style: TextStyle(color: AppColors.whit,fontSize: 12),)
+                                                      Text("Result: ${DateFormat('dd MMM yyyy').format(DateTime.parse(lotteryModel!.data!.lotteries![index].resultDate ?? ""))}",style: TextStyle(color: AppColors.whit,fontSize: 12),)
+
+
                                                     ],
                                                   ),
                                                 ),
+                                                height: 30,
+                                                decoration: BoxDecoration(borderRadius: BorderRadius.only(topLeft: Radius.circular(5),topRight: Radius.circular(5)),color: AppColors.secondary),
+                                              ),
 
-                                                Padding(
-                                                  padding: const EdgeInsets.only(left: 5,right: 5),
-                                                  child: Row(
-                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                    children: [
-                                                      Row(
-                                                        children: [
-                                                          SizedBox(height: 25,),
-                                                          Text("Start:",style: TextStyle(color: AppColors.whit,fontSize: 12),),
-                                                          SizedBox(width: 2,),
-                                                          Text("${lotteryModel!.data!.lotteries![index].date}",style: TextStyle(color: AppColors.whit,fontSize: 12),)
-                                                        ],
-                                                      ),
-                                                      Row(
-                                                        children: [
-                                                          SizedBox(height: 25,),
-                                                          Text("End:",style: TextStyle(color: AppColors.whit,fontSize: 12),),
-                                                          SizedBox(width: 2,),
-                                                          Text("${lotteryModel!.data!.lotteries![index].endDate}",style: TextStyle(color: AppColors.whit,fontSize: 12),)
-                                                        ],
-                                                      ),
-                                                      Row(
-                                                        children: [
-
-                                                          Text("Result:",style: TextStyle(color: AppColors.whit,fontSize: 12),),
-                                                          SizedBox(width: 2,),
-                                                          Text("${lotteryModel!.data!.lotteries![index].resultDate}",style: TextStyle(color: AppColors.whit,fontSize: 12),)
-                                                        ],
-                                                      ),
-                                                    ],
-                                                  ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(left: 8,right:8,top: 8),
+                                                child: Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  children: [
+                                                    Text("Open: ${lotteryModel!.data!.lotteries![index].openTime}",style: TextStyle(color: AppColors.black,fontSize: 12),),
+                                                    Text("Close: ${lotteryModel!.data!.lotteries![index].closeTime}",style: TextStyle(color: AppColors.black,fontSize: 12),)
+                                                  ],
                                                 ),
+                                              ),
 
-                                              ],
-                                            )
+                                              Text("Entry Fees: ${lotteryModel!.data!.lotteries![index].ticketPrice}",style: TextStyle(color: AppColors.black,fontSize: 12,fontWeight: FontWeight.bold),),
+
+                                              // Padding(
+                                              //   padding: const EdgeInsets.only(left: 5,right: 5),
+                                              //   child: Row(
+                                              //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              //     children: [
+                                              //       Row(
+                                              //         children: [
+                                              //
+                                              //           Text("Price:",style: TextStyle(color: AppColors.whit,fontSize: 12),),
+                                              //           SizedBox(width: 2,),
+                                              //           Text("${lotteryModel!.data!.lotteries![index].ticketPrice}",style: TextStyle(color: AppColors.whit,fontSize: 12),)
+                                              //         ],
+                                              //       ),
+                                              //
+                                              //       Row(
+                                              //         children: [
+                                              //           SizedBox(height: 25,),
+                                              //           Text("Open:",style: TextStyle(color: AppColors.whit,fontSize: 12),),
+                                              //           SizedBox(width: 2,),
+                                              //           Text("${lotteryModel!.data!.lotteries![index].openTime}",style: TextStyle(color: AppColors.whit,fontSize: 12),)
+                                              //         ],
+                                              //       ),
+                                              //       Row(
+                                              //         children: [
+                                              //           SizedBox(height: 25,),
+                                              //           Text("Close:",style: TextStyle(color: AppColors.whit,fontSize: 12),),
+                                              //           SizedBox(width: 2,),
+                                              //           Text("${lotteryModel!.data!.lotteries![index].closeTime}",style: TextStyle(color: AppColors.whit,fontSize: 12),)
+                                              //         ],
+                                              //       )
+                                              //     ],
+                                              //   ),
+                                              // ),
+                                              // Padding(
+                                              //   padding: const EdgeInsets.all(8.0),
+                                              //   child: Row(
+                                              //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              //     children: [
+                                              //       Text("${lotteryModel!.data!.lotteries![index].gameName}",style: TextStyle(color: AppColors.whit,fontSize: 12),),
+                                              //       lotteryModel!.data!.lotteries![index].active == '0' ?  Text("Betting is Running Now",style: TextStyle(color: AppColors.whit,fontSize: 12),):SizedBox.shrink(),
+                                              //       Container(
+                                              //         height: 45,width: 50,
+                                              //         child: ClipRRect(
+                                              //             borderRadius: BorderRadius.circular(10),
+                                              //             child: Image.network("${lotteryModel!.data!.lotteries![index].image}",fit: BoxFit.fill,)),
+                                              //       ),
+                                              //     ],
+                                              //   ),
+                                              // ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(left: 8,right: 8),
+                                                child: Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  children: [
+                                                    // Text("Start: ${lotteryModel!.data!.lotteries![index].date}",style: TextStyle(color: AppColors.black,fontSize: 12),),
+                                                    Text("Start: ${DateFormat('dd MMM yyyy').format(DateTime.parse(lotteryModel!.data!.lotteries![index].date?? ""))}",style: TextStyle(color: AppColors.black,fontSize: 12),),
+                                                    // Text("End: ${lotteryModel!.data!.lotteries![index].endDate}",style: TextStyle(color: AppColors.black,fontSize: 12),)
+                                                    Text("End: ${DateFormat('dd MMM yyyy').format(DateTime.parse(lotteryModel!.data!.lotteries![index].endDate?? ""))}",style: TextStyle(color: AppColors.black,fontSize: 12),)
+
+                                                  ],
+                                                ),
+                                              ),
+
+                                              // Padding(
+                                              //   padding: const EdgeInsets.only(left: 5,right: 5),
+                                              //   child: Row(
+                                              //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              //     children: [
+                                              //       Row(
+                                              //         children: [
+                                              //           SizedBox(height: 25,),
+                                              //           Text("Start:",style: TextStyle(color: AppColors.whit,fontSize: 12),),
+                                              //           SizedBox(width: 2,),
+                                              //           Text("${lotteryModel!.data!.lotteries![index].date}",style: TextStyle(color: AppColors.whit,fontSize: 12),)
+                                              //         ],
+                                              //       ),
+                                              //       Row(
+                                              //         children: [
+                                              //           SizedBox(height: 25,),
+                                              //           Text("End:",style: TextStyle(color: AppColors.whit,fontSize: 12),),
+                                              //           SizedBox(width: 2,),
+                                              //           Text("${lotteryModel!.data!.lotteries![index].endDate}",style: TextStyle(color: AppColors.whit,fontSize: 12),)
+                                              //         ],
+                                              //       ),
+                                              //       // Row(
+                                              //       //   children: [
+                                              //       //
+                                              //       //     Text("Result:",style: TextStyle(color: AppColors.whit,fontSize: 12),),
+                                              //       //     SizedBox(width: 2,),
+                                              //       //     Text("${lotteryModel!.data!.lotteries![index].resultDate}",style: TextStyle(color: AppColors.whit,fontSize: 12),)
+                                              //       //   ],
+                                              //       // ),
+                                              //     ],
+                                              //   ),
+                                              // ),
+
+                                            ],
+                                          ),
                                         ),
                                       ),
                                     );
@@ -482,6 +531,8 @@ class _HomeScreenState extends State<HomeScreen> {
   LotteryModel? lotteryModel;
   Future<void> getLottery() async {
     apiBaseHelper.postAPICall2(getLotteryAPI).then((getData) {
+      print('--data---------${getData}');
+      print("----data222----");
       setState(() {
         lotteryModel = LotteryModel.fromJson(getData);
       });

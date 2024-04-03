@@ -72,7 +72,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                 bottomNavigationBar: CurvedNavigationBar(
                   //buttonBackgroundColor: Colors.white,
                   color: AppColors.secondary,
-                  backgroundColor: AppColors.whit,
+                  backgroundColor: AppColors.greyColor,
                   items: const [
                     CurvedNavigationBarItem(
 
@@ -90,13 +90,13 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                     CurvedNavigationBarItem(
                         child: ImageIcon(AssetImage(AppConstants.myLotteryIcon),
                             color: AppColors.whit),
-                        label: 'My Lotteries',
+                        label: 'My Contest',
                         labelStyle: TextStyle(color: AppColors.whit)
                     ),
                     CurvedNavigationBarItem(
                         child: ImageIcon(AssetImage(AppConstants.profileIcon),
                             color: AppColors.whit),
-                        label: 'Account',
+                        label: 'My Profile',
                         labelStyle: TextStyle(color: AppColors.whit)
                     ),
                   ],
@@ -110,7 +110,9 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                 ),
               key: _key,
 
-              backgroundColor: AppColors.whit,
+
+              backgroundColor: AppColors.greyColor,
+
               body: pageList[bottomIndex]
 
             ),

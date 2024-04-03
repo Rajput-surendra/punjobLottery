@@ -14,6 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:intl/intl.dart';
 
 import '../../Local_Storage/shared_pre.dart';
 import '../../Models/HomeModel/lottery_list_model.dart';
@@ -105,12 +106,13 @@ class _WinnerScreenState extends State<WinnerScreen> {
                                 decoration: const BoxDecoration(
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(10)),
-                                  gradient: RadialGradient(
-                                      radius: 1.2,
-                                      colors: [
-                                        AppColors.primary,
-                                        AppColors.secondary
-                                      ]),
+                                  color: AppColors.secondary
+                                  // gradient: RadialGradient(
+                                  //     radius: 1.2,
+                                  //     colors: [
+                                  //       AppColors.primary,
+                                  //       AppColors.secondary
+                                  //     ]),
                                 ),
                                 child: Center(
                                     child: Text(
@@ -128,6 +130,7 @@ class _WinnerScreenState extends State<WinnerScreen> {
           ),
           backgroundColor: AppColors.whit,
           appBar: AppBar(
+            foregroundColor: AppColors.whit,
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(50.0),
@@ -146,10 +149,11 @@ class _WinnerScreenState extends State<WinnerScreen> {
                   bottomLeft: Radius.circular(10.0),
                   bottomRight: Radius.circular(10),
                 ),
-                gradient: RadialGradient(
-                    center: Alignment.center,
-                    radius: 1.1,
-                    colors: <Color>[AppColors.primary, AppColors.secondary]),
+                color: AppColors.secondary
+                // gradient: RadialGradient(
+                //     center: Alignment.center,
+                //     radius: 1.1,
+                //     colors: <Color>[AppColors.primary, AppColors.secondary]),
               ),
             ),
           ),
@@ -160,22 +164,61 @@ class _WinnerScreenState extends State<WinnerScreen> {
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const Text(
-                              "Timer",
-                              style: TextStyle(
-                                  color: AppColors.fntClr,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            Card(
-                                child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text("$_counter1 : $_counter"),
-                            )),
-                          ],
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8,right: 8,top: 8),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const Text(
+                                "Entry Fees",
+                                style: TextStyle(
+                                    color: AppColors.fntClr,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                             // SizedBox(height: 5,),
+                              Text(
+                                "₹${lotteryDetailsModel!.data!.lottery!.ticketPrice}",
+                                style: const TextStyle(
+                                    color: AppColors.fntClr,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              // Column(
+                              //   children: [
+                              //     const Text(
+                              //       "Timer",
+                              //       style: TextStyle(
+                              //           color: AppColors.fntClr,
+                              //           fontSize: 15,
+                              //           fontWeight: FontWeight.bold),
+                              //     ),
+                              //     Card(
+                              //         child: Padding(
+                              //           padding: const EdgeInsets.all(8.0),
+                              //           child: Text("$_counter1 : $_counter"),
+                              //         )),
+                              //   ],
+                              // ),
+                             // Column(
+                             //   children: [
+                             //     const Text(
+                             //       "Entry Fees",
+                             //       style: TextStyle(
+                             //           color: AppColors.fntClr,
+                             //           fontSize: 15,
+                             //           fontWeight: FontWeight.bold),
+                             //     ),
+                             //     SizedBox(height: 5,),
+                             //     Text(
+                             //       "₹${lotteryDetailsModel!.data!.lottery!.ticketPrice}",
+                             //       style: const TextStyle(
+                             //           color: AppColors.fntClr,
+                             //           fontWeight: FontWeight.bold),
+                             //     ),
+                             //   ],
+                             // )
+                            ],
+                          ),
                         ),
 
                         //SizedBox(height: 20,),
@@ -204,7 +247,7 @@ class _WinnerScreenState extends State<WinnerScreen> {
                                         child: Column(
                                           children: [
                                             const SizedBox(
-                                              height: 25,
+                                              height: 18,
                                             ),
                                             Padding(
                                               padding: const EdgeInsets.only(
@@ -214,24 +257,24 @@ class _WinnerScreenState extends State<WinnerScreen> {
                                                 style: const TextStyle(
                                                     color: AppColors.red,
                                                     fontWeight:
-                                                        FontWeight.bold),
+                                                        FontWeight.bold,fontSize: 23),
                                               ),
                                             ),
                                             const SizedBox(
-                                              height: 20,
+                                              height: 11,
                                             ),
                                             const Text(
                                               "Winner Price ",
                                               style: TextStyle(
                                                   color: AppColors.whit,
                                                   fontWeight: FontWeight.bold,
-                                                  fontSize: 15),
+                                                  fontSize: 14),
                                             ),
                                             Text(
                                               "₹${lotteryDetailsModel!.data!.lottery!.winningPositionHistory![index].winnerPrice}",
                                               style: const TextStyle(
                                                   color: AppColors.whit,
-                                                  fontSize: 15,
+                                                  fontSize: 14,
                                                   fontWeight: FontWeight.bold),
                                             ),
                                           ],
@@ -250,25 +293,25 @@ class _WinnerScreenState extends State<WinnerScreen> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Row(
-                                      children: [
-                                        const Text(
-                                          "Lottery Price",
-                                          style: TextStyle(
-                                              color: AppColors.fntClr,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                        const SizedBox(
-                                          width: 5,
-                                        ),
-                                        Text(
-                                          "(₹${lotteryDetailsModel!.data!.lottery!.ticketPrice})",
-                                          style: const TextStyle(
-                                              color: AppColors.fntClr,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                      ],
-                                    ),
+                                    // Row(
+                                    //   children: [
+                                    //     const Text(
+                                    //       "Lottery Price",
+                                    //       style: TextStyle(
+                                    //           color: AppColors.fntClr,
+                                    //           fontWeight: FontWeight.bold),
+                                    //     ),
+                                    //     const SizedBox(
+                                    //       width: 5,
+                                    //     ),
+                                    //     Text(
+                                    //       "(₹${lotteryDetailsModel!.data!.lottery!.ticketPrice})",
+                                    //       style: const TextStyle(
+                                    //           color: AppColors.fntClr,
+                                    //           fontWeight: FontWeight.bold),
+                                    //     ),
+                                    //   ],
+                                    // ),
                                     // Row(
                                     //   children: [
                                     //     Text(
@@ -294,7 +337,23 @@ class _WinnerScreenState extends State<WinnerScreen> {
                                       width: 5,
                                     ),
                                     Text(
-                                        "Close ${lotteryDetailsModel!.data!.lottery!.closeTime}"),
+                                        "Close: ${lotteryDetailsModel!.data!.lottery!.closeTime}"),
+                                  ],
+                                ),
+                                SizedBox(height: 5,),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+
+                                    Text(
+                                        "Start: ${ DateFormat('dd MMM yyyy').format(DateTime.parse(lotteryDetailsModel!.data!.lottery!.date ?? ""))}",style: TextStyle(
+                                      color: AppColors.fntClr
+                                    ),),
+                                    const SizedBox(
+                                      width: 5,
+                                    ),
+                                    Text(
+                                        "End: ${ DateFormat('dd MMM yyyy').format(DateTime.parse(lotteryDetailsModel!.data!.lottery!.endDate ?? ""))}"),
                                   ],
                                 ),
                                 const SizedBox(
