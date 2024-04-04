@@ -13,6 +13,7 @@ import 'package:flutter_share/flutter_share.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../Local_Storage/shared_pre.dart';
 import '../../Models/HomeModel/get_profile_model.dart';
@@ -508,7 +509,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     const SizedBox(height: 10,),
                     InkWell(
                       onTap: (){
-                        share();
+                        _launchPlayStore();
+                        // share();
                         // Get.toNamed(inviteFriend);
                       },
                       child: Container(
@@ -938,5 +940,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ],
       ),
     );
+  }
+  _launchPlayStore() async {
+    const url = 'https://play.google.com/store';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }
