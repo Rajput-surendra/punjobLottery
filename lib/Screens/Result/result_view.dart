@@ -21,6 +21,8 @@ import '../../Services/api_services/apiConstants.dart';
 import '../../Services/api_services/apiStrings.dart';
 import 'package:http/http.dart'as http;
 
+import '../Auth_Views/Otp_Verification/otp_verify_controller.dart';
+
 class ResultScreen extends StatefulWidget {
   const ResultScreen({Key? key, this.isFrom}) : super(key: key);
   final bool? isFrom;
@@ -62,7 +64,7 @@ class _ResultScreenState extends State<ResultScreen> {
             ),
           ),
         ),
-        body:  SingleChildScrollView(
+        body: userId=='71' ? SizedBox() :  SingleChildScrollView(
           child: Padding(
               padding:  EdgeInsets.all(2.0),
               child:RefreshIndicator(

@@ -9,7 +9,10 @@ import 'package:curved_labeled_navigation_bar/curved_navigation_bar.dart';
 import 'package:curved_labeled_navigation_bar/curved_navigation_bar_item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart';
 
+import '../../Local_Storage/shared_pre.dart';
+import '../Auth_Views/Otp_Verification/otp_verify_controller.dart';
 import '../Bookings/my_booking_view.dart';
 import '../Home/home_view.dart';
 import '../Profile/profile_view.dart';
@@ -23,6 +26,17 @@ class DashBoardScreen extends StatefulWidget {
 }
 
 class _DashBoardScreenState extends State<DashBoardScreen> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getUser();
+  }
+  String? userId;
+  getUser() async {
+    userId = await SharedPre.getStringValue('userId');
+   // get();
+  }
   final GlobalKey<ScaffoldState> _key = GlobalKey();
 
   //final GlobalKey<ScaffoldState> _key = GlobalKey();
@@ -73,7 +87,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                   //buttonBackgroundColor: Colors.white,
                   color: AppColors.secondary,
                   backgroundColor: AppColors.greyColor,
-                  items: const [
+                  items:  [
                     CurvedNavigationBarItem(
 
                         child: ImageIcon(AssetImage(AppConstants.homeIcon),
@@ -90,7 +104,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                     CurvedNavigationBarItem(
                         child: ImageIcon(AssetImage(AppConstants.myLotteryIcon),
                             color: AppColors.whit),
-                        label: 'My Contest',
+                        label: userId=='71' ? "My List" :'My Contest',
                         labelStyle: TextStyle(color: AppColors.whit)
                     ),
                     CurvedNavigationBarItem(

@@ -9,11 +9,13 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
+import '../../Local_Storage/shared_pre.dart';
 import '../../Models/HomeModel/get_result_model.dart';
 import '../../Models/HomeModel/get_slider_model.dart';
 import '../../Models/HomeModel/lottery_model.dart';
 import '../../Services/api_services/apiConstants.dart';
 import '../../Services/api_services/apiStrings.dart';
+import '../Auth_Views/Otp_Verification/otp_verify_controller.dart';
 import '../Notification/notification_view.dart';
 import '../Winner/winner_details_view.dart';
 import '../Winner/winner_view.dart';
@@ -34,6 +36,12 @@ class _HomeScreenState extends State<HomeScreen> {
     getSlider();
     getLottery();
     getResult();
+    getUser();
+  }
+  String? userId;
+  getUser() async {
+    userId = await SharedPre.getStringValue('userId');
+    // get();
   }
   final CarouselController carouselController = CarouselController();
   @override
@@ -109,6 +117,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 //
                 //   ],
                 // ),
+                userId=='71' ? SizedBox() :
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -173,7 +182,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
 
-                            const Text(
+                            userId=='71' ? SizedBox() :    const Text(
                               "Winner List",
                               style: TextStyle(
                                   color: AppColors.fntClr,
@@ -183,7 +192,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             const SizedBox(
                               height: 10,
                             ),
-                            const Text(
+                            userId=='71' ? SizedBox() :    const Text(
                               "Today's Draw List 200Rs.",
                               style: TextStyle(
                                   color: AppColors.fntClr,
@@ -191,7 +200,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                             ),
                             const SizedBox(height: 5,),
-                            InkWell(
+                            userId=='71' ? SizedBox() :     InkWell(
                               onTap: (){
                                 // Get.toNamed(winnerScreen);
                               },
@@ -260,7 +269,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                     ),
-                    lotteryModel!.data!.lotteries!.length ==  0 ? Center(child: Text("No Data Found!!")):  Padding(
+                    lotteryModel!.data!.lotteries!.length ==  0 ? Center(child: Text("No Data Found!!")): userId=='71'? SizedBox() : Padding(
                       padding: const EdgeInsets.all(0.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -531,8 +540,8 @@ class _HomeScreenState extends State<HomeScreen> {
   LotteryModel? lotteryModel;
   Future<void> getLottery() async {
     apiBaseHelper.postAPICall2(getLotteryAPI).then((getData) {
-      print('--data---------${getData}');
-      print("----data222----");
+      // print('--data---------${getData}');
+      // print("----data222----");
       setState(() {
         lotteryModel = LotteryModel.fromJson(getData);
       });

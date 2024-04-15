@@ -8,11 +8,10 @@ import 'package:get/get.dart';
 
 import '../../../Routes/routes.dart';
 
+
+
+
 class OTPVerifyController extends AppBaseController{
-
-
-
-
   @override
   void onInit() {
     // TODO: implement onInit
@@ -38,6 +37,7 @@ RxBool isLoading = false.obs ;
     apiBaseHelper.postAPICall(verifyOTPAPI, param).then((getData) async {
       bool status = getData['status'];
       String msg = getData['msg'];
+      print('user data${getData}');
 
       if (status) {
 
@@ -46,8 +46,8 @@ RxBool isLoading = false.obs ;
         SharedPre.setValue('userReferCode', getData['referral_code']);
         SharedPre.setValue('balanceUser', getData['wallet_balance']);
         SharedPre.setValue('userId', getData['user_id'].toString());
-        var id =await SharedPre.getStringValue('userId');
-        print( id + "VERIFIAITO ");
+        var  userIdNew =await SharedPre.getStringValue('userId');
+        print( userIdNew + "VERIFIAITO ");
 
         Fluttertoast.showToast(msg: msg);
         Get.toNamed(bottomBar);

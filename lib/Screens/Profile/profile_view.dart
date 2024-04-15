@@ -20,6 +20,7 @@ import '../../Models/HomeModel/get_profile_model.dart';
 import '../../Services/api_services/apiConstants.dart';
 import '../../Services/api_services/apiStrings.dart';
 import '../Auth_Views/Login/login_view.dart';
+import '../Auth_Views/Otp_Verification/otp_verify_controller.dart';
 import '../FaQ/faq_view.dart';
 import '../My Transaction/transaction_view.dart';
 import 'package:http/http.dart'as http;
@@ -40,7 +41,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
     // TODO: implement initState
     super.initState();
     referCode();
+   // getUser();
   }
+  // String? userId;
+  // getUser() async {
+  //   userId = await SharedPre.getStringValue('userId');
+  //   // get();
+  // }
   String? mobile,userId,userName,userBalance;
   referCode() async {
     mobile = await SharedPre.getStringValue('userMobile');
@@ -142,6 +149,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     left: MediaQuery.sizeOf(context).width / 3,
                     child: Stack(
                       children: [
+                        userId=='71' ? SizedBox():
                         Container(
                           height: 120,
                           width: 120,
@@ -183,6 +191,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
+                        userId=='71' ? SizedBox() :
                         Expanded(
                           child: Container(
                             height: 60,
@@ -205,7 +214,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           ),
                         ),
                         const SizedBox(width: 5,),
-                        Expanded(
+                        userId=='71' ? SizedBox() :  Expanded(
                           child: InkWell(
                             onTap: (){
                               Get.toNamed(referAndEranScreen);
@@ -264,7 +273,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     //   ),
                     // ),
                     const SizedBox(height: 10,),
-                    InkWell(
+                    userId=='71' ? SizedBox() :  InkWell(
                       onTap: (){
                         Get.toNamed(addMoney);
                       },
@@ -294,7 +303,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                     ),
                     const SizedBox(height: 10,),
-                    InkWell(
+                    userId=='71' ? SizedBox() :   InkWell(
                       onTap: (){
                         Navigator.push(context, MaterialPageRoute(builder: (context)=>WithdrawalScreen()));
                       },
@@ -354,7 +363,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                     ),
                     const SizedBox(height: 10,),
-                    InkWell(
+                    userId=='71' ? SizedBox() :  InkWell(
                       onTap: (){
                         Navigator.push(context, MaterialPageRoute(builder: (context)=>TransactionScreen()));
                       },

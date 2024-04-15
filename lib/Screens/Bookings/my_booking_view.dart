@@ -15,6 +15,8 @@ import '../../Models/HomeModel/my_lottery_model.dart';
 import '../../Services/api_services/apiConstants.dart';
 import 'package:http/http.dart'as http;
 
+import '../Auth_Views/Otp_Verification/otp_verify_controller.dart';
+
 class MyBookingsScreen extends StatefulWidget {
   const MyBookingsScreen({Key? key, this.isFrom}) : super(key: key);
 final bool? isFrom ;
@@ -47,7 +49,7 @@ class _MyBookingsScreenState extends State<MyBookingsScreen> {
           ),),
         toolbarHeight: 60,
         centerTitle: true,
-        title: Text("My Contest",style: TextStyle(fontSize: 17,color: AppColors.whit),),
+        title: Text( userId=='71' ? "My List" :"My Contest",style: TextStyle(fontSize: 17,color: AppColors.whit),),
         flexibleSpace: Container(
           decoration: const BoxDecoration(
             borderRadius:   BorderRadius.only(
@@ -60,7 +62,7 @@ class _MyBookingsScreenState extends State<MyBookingsScreen> {
           ),
         ),
       ),
-      body:  SingleChildScrollView(
+      body:  userId=='71' ? SizedBox() : SingleChildScrollView(
         child: Padding(
           padding:  EdgeInsets.all(2.0),
           child:RefreshIndicator(
